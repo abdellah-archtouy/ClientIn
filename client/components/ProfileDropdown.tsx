@@ -116,21 +116,27 @@ export default function ProfileDropdown() {
           {/* Menu Items */}
           <div className="p-2">
             <Button
+              asChild
               variant="ghost"
               className="w-full justify-start text-sm font-normal hover:bg-muted/50 rounded-lg"
               onClick={() => setIsOpen(false)}
             >
-              <User className="h-4 w-4 mr-3" />
-              View Profile
+              <Link to="/profile">
+                <User className="h-4 w-4 mr-3" />
+                View Profile
+              </Link>
             </Button>
-            
+
             <Button
+              asChild
               variant="ghost"
               className="w-full justify-start text-sm font-normal hover:bg-muted/50 rounded-lg"
               onClick={() => setIsOpen(false)}
             >
-              <Settings className="h-4 w-4 mr-3" />
-              Account Settings
+              <Link to="/settings">
+                <Settings className="h-4 w-4 mr-3" />
+                Account Settings
+              </Link>
             </Button>
 
             <Button
