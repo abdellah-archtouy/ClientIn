@@ -224,13 +224,15 @@ export default function Dashboard() {
             >
               <Home className="h-6 w-6" />
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-12 h-12 p-0 text-sidebar-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-            >
-              <Users className="h-6 w-6" />
-            </Button>
+            <Link to="/employees">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-12 h-12 p-0 text-sidebar-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
+              >
+                <Users className="h-6 w-6" />
+              </Button>
+            </Link>
             <Button
               variant="ghost"
               size="sm"
@@ -306,11 +308,14 @@ export default function Dashboard() {
                 />
               </div>
               <Button
+                asChild
                 size="sm"
                 className="rounded-xl bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg"
               >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Employee
+                <Link to="/employees">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Employee
+                </Link>
               </Button>
               <Avatar className="w-10 h-10 ring-2 ring-primary/20">
                 <AvatarImage src="/api/placeholder/40/40" />
