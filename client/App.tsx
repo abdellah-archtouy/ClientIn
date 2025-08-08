@@ -12,6 +12,9 @@ import EClient from "./pages/EClient";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import EmployeeManagement from "./pages/EmployeeManagement";
+import ViewProfile from "./pages/ViewProfile";
+import AccountSettings from "./pages/AccountSettings";
+import Charts from "./pages/Charts";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
