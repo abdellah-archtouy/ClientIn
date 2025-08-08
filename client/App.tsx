@@ -20,8 +20,11 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Suppress ResizeObserver loop error - common with Radix UI components
+// Suppress ResizeObserver loop error/warning - common with Radix UI components
 const originalError = console.error;
+const originalWarn = console.warn;
+
+// Suppress console.error
 console.error = (...args: any[]) => {
   if (
     typeof args[0] === "string" &&
@@ -32,9 +35,28 @@ console.error = (...args: any[]) => {
   originalError.call(console, ...args);
 };
 
-// Also handle window error events
+// Suppress console.warn
+console.warn = (...args: any[]) => {
+  if (
+    typeof args[0] === "string" &&
+    args[0].includes("ResizeObserver loop completed with undelivered notifications")
+  ) {
+    return;
+  }
+  originalWarn.call(console, ...args);
+};
+
+// Handle window error events
 window.addEventListener("error", (e) => {
   if (e.message.includes("ResizeObserver loop completed with undelivered notifications")) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// Handle unhandled promise rejection events
+window.addEventListener("unhandledrejection", (e) => {
+  if (e.reason?.message?.includes("ResizeObserver loop completed with undelivered notifications")) {
     e.preventDefault();
     return false;
   }
