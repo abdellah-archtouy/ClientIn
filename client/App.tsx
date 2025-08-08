@@ -17,6 +17,26 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Suppress ResizeObserver loop error - common with Radix UI components
+const originalError = console.error;
+console.error = (...args: any[]) => {
+  if (
+    typeof args[0] === "string" &&
+    args[0].includes("ResizeObserver loop completed with undelivered notifications")
+  ) {
+    return;
+  }
+  originalError.call(console, ...args);
+};
+
+// Also handle window error events
+window.addEventListener("error", (e) => {
+  if (e.message.includes("ResizeObserver loop completed with undelivered notifications")) {
+    e.preventDefault();
+    return false;
+  }
+});
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
