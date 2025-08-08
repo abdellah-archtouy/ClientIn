@@ -32,8 +32,8 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import NotificationPanel from "@/components/NotificationPanel";
-import ProfileDropdown from "@/components/ProfileDropdown";
+import Sidebar from "@/components/Sidebar";
+import SearchField from "@/components/SearchField";
 
 const employees = [
   {
@@ -211,65 +211,7 @@ const stats = [
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-20 bg-sidebar backdrop-blur-xl border-r border-sidebar-border z-50">
-        <div className="flex flex-col items-center py-6 space-y-6">
-          <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg">
-            <span className="text-primary-foreground font-bold text-lg">C</span>
-          </div>
-
-          <nav className="flex flex-col space-y-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-12 h-12 p-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl transition-all duration-200"
-            >
-              <Home className="h-6 w-6" />
-            </Button>
-            <Link to="/employees">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-12 h-12 p-0 text-sidebar-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-              >
-                <Users className="h-6 w-6" />
-              </Button>
-            </Link>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-12 h-12 p-0 text-sidebar-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-            >
-              <BarChart3 className="h-6 w-6" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-12 h-12 p-0 text-sidebar-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-            >
-              <FileText className="h-6 w-6" />
-            </Button>
-          </nav>
-
-          <div className="flex-1"></div>
-
-          <div className="space-y-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-12 h-12 p-0 text-slate-500 hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-            >
-              <Settings className="h-6 w-6" />
-            </Button>
-            <NotificationPanel />
-            <Badge className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs px-2 py-1 rounded-lg">
-              PRO
-            </Badge>
-          </div>
-
-          <ProfileDropdown />
-        </div>
-      </div>
+      <Sidebar />
 
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
@@ -287,14 +229,10 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <input
-                  type="search"
-                  placeholder="Search employees..."
-                  className="pl-10 pr-4 py-2 border border-border rounded-xl bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 w-64"
-                />
-              </div>
+              <SearchField
+                placeholder="Search employees..."
+                className="w-64"
+              />
               <Button
                 asChild
                 size="sm"
