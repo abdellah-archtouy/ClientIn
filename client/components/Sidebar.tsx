@@ -36,8 +36,8 @@ export default function Sidebar({ className = "" }: SidebarProps) {
     },
     {
       icon: FileText,
-      path: "/reports",
-      label: "Reports",
+      path: "/feedback",
+      label: "Feedback",
     },
   ];
 
