@@ -14,6 +14,14 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import ResizeObserver from 'resize-observer-polyfill';
+
+if (typeof window !== 'undefined' && !window.ResizeObserver) {
+  // @ts-ignore
+  window.ResizeObserver = ResizeObserver;
+}
+
+
 export default function Index() {
   return (
     <div className="min-h-screen bg-background">
