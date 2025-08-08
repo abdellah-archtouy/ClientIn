@@ -745,7 +745,7 @@ export default function Dashboard() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-4">
-                  <div className="group cursor-pointer bg-gradient-to-br from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 rounded-xl p-4 border border-primary/20 hover:border-primary/30 transition-all duration-300 hover:scale-105">
+                  <Link to="/employees" className="group cursor-pointer bg-gradient-to-br from-primary/10 to-primary/5 hover:from-primary/20 hover:to-primary/10 rounded-xl p-4 border border-primary/20 hover:border-primary/30 transition-all duration-300 hover:scale-105 block">
                     <div className="flex flex-col items-center text-center space-y-3">
                       <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
                         <Plus className="h-6 w-6 text-primary" />
@@ -759,25 +759,25 @@ export default function Dashboard() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
-                  <div className="group cursor-pointer bg-gradient-to-br from-blue-500/10 to-blue-500/5 hover:from-blue-500/20 hover:to-blue-500/10 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500/30 transition-all duration-300 hover:scale-105">
+                  <Link to="/feedback" className="group cursor-pointer bg-gradient-to-br from-blue-500/10 to-blue-500/5 hover:from-blue-500/20 hover:to-blue-500/10 rounded-xl p-4 border border-blue-500/20 hover:border-blue-500/30 transition-all duration-300 hover:scale-105 block">
                     <div className="flex flex-col items-center text-center space-y-3">
                       <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
                         <FileText className="h-6 w-6 text-blue-500" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-sm text-foreground">
-                          Reports
+                          Feedback
                         </h4>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Generate analytics
+                          Manage customer feedback
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
-                  <div className="group cursor-pointer bg-gradient-to-br from-purple-500/10 to-purple-500/5 hover:from-purple-500/20 hover:to-purple-500/10 rounded-xl p-4 border border-purple-500/20 hover:border-purple-500/30 transition-all duration-300 hover:scale-105">
+                  <Link to="/settings" className="group cursor-pointer bg-gradient-to-br from-purple-500/10 to-purple-500/5 hover:from-purple-500/20 hover:to-purple-500/10 rounded-xl p-4 border border-purple-500/20 hover:border-purple-500/30 transition-all duration-300 hover:scale-105 block">
                     <div className="flex flex-col items-center text-center space-y-3">
                       <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center group-hover:bg-purple-500/30 transition-colors duration-300">
                         <Settings className="h-6 w-6 text-purple-500" />
@@ -791,23 +791,23 @@ export default function Dashboard() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
 
-                  <div className="group cursor-pointer bg-gradient-to-br from-orange-500/10 to-orange-500/5 hover:from-orange-500/20 hover:to-orange-500/10 rounded-xl p-4 border border-orange-500/20 hover:border-orange-500/30 transition-all duration-300 hover:scale-105">
+                  <Link to="/charts" className="group cursor-pointer bg-gradient-to-br from-orange-500/10 to-orange-500/5 hover:from-orange-500/20 hover:to-orange-500/10 rounded-xl p-4 border border-orange-500/20 hover:border-orange-500/30 transition-all duration-300 hover:scale-105 block">
                     <div className="flex flex-col items-center text-center space-y-3">
                       <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center group-hover:bg-orange-500/30 transition-colors duration-300">
-                        <Bell className="h-6 w-6 text-orange-500" />
+                        <BarChart3 className="h-6 w-6 text-orange-500" />
                       </div>
                       <div>
                         <h4 className="font-semibold text-sm text-foreground">
-                          Alerts
+                          Analytics
                         </h4>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Manage notifications
+                          View performance charts
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </CardContent>
               </Card>
 
