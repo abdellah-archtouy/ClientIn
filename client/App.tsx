@@ -37,6 +37,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/employees" element={<EmployeeManagement />} />
           <Route path="/charts" element={<Charts />} />
+          <Route path="/feedback" element={<Feedback />} />
           <Route path="/profile" element={<ViewProfile />} />
           <Route path="/settings" element={<AccountSettings />} />
           <Route path="/upgrade" element={<Upgrade />} />
