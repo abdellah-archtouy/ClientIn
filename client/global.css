@@ -106,4 +106,26 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Prevent ResizeObserver loops by ensuring stable layouts */
+  [data-radix-scroll-area-viewport] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  [data-radix-scroll-area-viewport]::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Stabilize popover and dialog positioning to reduce ResizeObserver triggers */
+  [data-radix-popper-content-wrapper],
+  [data-radix-dialog-overlay],
+  [data-radix-popover-content] {
+    contain: layout style;
+  }
+
+  /* Prevent content jumping that can trigger ResizeObserver loops */
+  [data-radix-scroll-area-root] {
+    overflow: hidden;
+  }
 }
