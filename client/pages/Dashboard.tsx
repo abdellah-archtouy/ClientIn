@@ -34,6 +34,7 @@ import {
 import { Link } from "react-router-dom";
 import Sidebar from "@/components/Sidebar";
 import SearchField from "@/components/SearchField";
+import ProfileDropdown from "@/components/ProfileDropdown";
 
 const employees = [
   {
