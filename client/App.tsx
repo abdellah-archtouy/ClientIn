@@ -15,6 +15,7 @@ import EmployeeManagement from "./pages/EmployeeManagement";
 import ViewProfile from "./pages/ViewProfile";
 import AccountSettings from "./pages/AccountSettings";
 import Charts from "./pages/Charts";
+import Upgrade from "./pages/Upgrade";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
