@@ -16,6 +16,7 @@ import ViewProfile from "./pages/ViewProfile";
 import AccountSettings from "./pages/AccountSettings";
 import Charts from "./pages/Charts";
 import Upgrade from "./pages/Upgrade";
+import Feedback from "./pages/Feedback";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
