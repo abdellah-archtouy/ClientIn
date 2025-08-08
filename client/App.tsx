@@ -40,6 +40,15 @@ const App = () => (
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/profile" element={<ViewProfile />} />
           <Route path="/settings" element={<AccountSettings />} />
+          <Route
+            path="/reports"
+            element={
+              <Placeholder
+                title="Reports"
+                description="Advanced reporting and analytics dashboard coming soon."
+              />
+            }
+          />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/e-client" element={<EClient />} />
           <Route
