@@ -9,6 +9,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import EClient from "./pages/EClient";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import EmployeeManagement from "./pages/EmployeeManagement";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
