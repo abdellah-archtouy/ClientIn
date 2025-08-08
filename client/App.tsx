@@ -52,6 +52,9 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/employees" element={<EmployeeManagement />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/profile" element={<ViewProfile />} />
+          <Route path="/settings" element={<AccountSettings />} />
           <Route path="/e-client" element={<EClient />} />
           <Route
             path="/about"
