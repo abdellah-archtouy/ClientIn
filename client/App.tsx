@@ -21,8 +21,22 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Comprehensive ResizeObserver error suppression - common with Radix UI components
+// Ultimate ResizeObserver error suppression - common with Radix UI components
+// This must be the very first thing that runs to catch all instances
 const resizeObserverErrorRegex = /ResizeObserver loop completed with undelivered notifications/i;
+
+// Immediately suppress any existing ResizeObserver errors
+(() => {
+  if (typeof window !== 'undefined') {
+    const originalOnError = window.onerror;
+    window.onerror = (message, source, lineno, colno, error) => {
+      if (typeof message === 'string' && resizeObserverErrorRegex.test(message)) {
+        return true; // Prevent default error handling
+      }
+      return originalOnError ? originalOnError(message, source, lineno, colno, error) : false;
+    };
+  }
+})();
 
 // Store original console methods
 const originalError = console.error;
