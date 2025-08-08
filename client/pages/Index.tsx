@@ -339,7 +339,12 @@ export default function Index() {
             <Button asChild size="lg" className="text-lg px-8">
               <Link to="/signup">Commencer gratuitement</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="text-lg px-8"
+            >
               <Link to="/contact">Contacter un expert</Link>
             </Button>
           </div>

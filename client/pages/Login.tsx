@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +23,7 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate login - in real app this would be an API call
     setTimeout(() => {
       setIsLoading(false);
@@ -31,13 +37,18 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors mb-6">
+          <Link
+            to="/"
+            className="inline-flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
+          >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to home</span>
           </Link>
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">C</span>
+              <span className="text-primary-foreground font-bold text-lg">
+                C
+              </span>
             </div>
             <span className="text-2xl font-bold text-foreground">ClientIn</span>
           </div>
@@ -51,7 +62,8 @@ export default function Login() {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
             <CardDescription>
-              Sign in to your ClientIn dashboard to manage your team and track performance
+              Sign in to your ClientIn dashboard to manage your team and track
+              performance
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -94,7 +106,11 @@ export default function Login() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -106,7 +122,10 @@ export default function Login() {
                     type="checkbox"
                     className="rounded border-border text-primary focus:ring-primary/20"
                   />
-                  <Label htmlFor="remember" className="text-sm text-muted-foreground">
+                  <Label
+                    htmlFor="remember"
+                    className="text-sm text-muted-foreground"
+                  >
                     Remember me
                   </Label>
                 </div>

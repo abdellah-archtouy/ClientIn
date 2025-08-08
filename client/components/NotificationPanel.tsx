@@ -3,16 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { 
-  Bell, 
-  Star, 
-  Users, 
-  Clock, 
-  Check, 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Bell,
+  Star,
+  Users,
+  Clock,
+  Check,
   X,
   Settings,
-  Trash2
+  Trash2,
 } from "lucide-react";
 
 const notifications = [
@@ -26,7 +30,7 @@ const notifications = [
     avatar: "/api/placeholder/32/32",
     icon: Star,
     color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10"
+    bgColor: "bg-yellow-500/10",
   },
   {
     id: 2,
@@ -38,7 +42,7 @@ const notifications = [
     avatar: "/api/placeholder/32/32",
     icon: Clock,
     color: "text-primary",
-    bgColor: "bg-primary/10"
+    bgColor: "bg-primary/10",
   },
   {
     id: 3,
@@ -50,7 +54,7 @@ const notifications = [
     avatar: null,
     icon: Users,
     color: "text-blue-500",
-    bgColor: "bg-blue-500/10"
+    bgColor: "bg-blue-500/10",
   },
   {
     id: 4,
@@ -62,7 +66,7 @@ const notifications = [
     avatar: "/api/placeholder/32/32",
     icon: Star,
     color: "text-red-500",
-    bgColor: "bg-red-500/10"
+    bgColor: "bg-red-500/10",
   },
   {
     id: 5,
@@ -74,32 +78,30 @@ const notifications = [
     avatar: "/api/placeholder/32/32",
     icon: Clock,
     color: "text-orange-500",
-    bgColor: "bg-orange-500/10"
-  }
+    bgColor: "bg-orange-500/10",
+  },
 ];
 
 export default function NotificationPanel() {
   const [notificationList, setNotificationList] = useState(notifications);
   const [isOpen, setIsOpen] = useState(false);
-  
-  const unreadCount = notificationList.filter(n => !n.read).length;
-  
+
+  const unreadCount = notificationList.filter((n) => !n.read).length;
+
   const markAsRead = (id: number) => {
-    setNotificationList(prev => 
-      prev.map(notif => 
-        notif.id === id ? { ...notif, read: true } : notif
-      )
+    setNotificationList((prev) =>
+      prev.map((notif) => (notif.id === id ? { ...notif, read: true } : notif)),
     );
   };
-  
+
   const markAllAsRead = () => {
-    setNotificationList(prev => 
-      prev.map(notif => ({ ...notif, read: true }))
+    setNotificationList((prev) =>
+      prev.map((notif) => ({ ...notif, read: true })),
     );
   };
-  
+
   const deleteNotification = (id: number) => {
-    setNotificationList(prev => prev.filter(notif => notif.id !== id));
+    setNotificationList((prev) => prev.filter((notif) => notif.id !== id));
   };
 
   return (
@@ -125,7 +127,10 @@ export default function NotificationPanel() {
               <CardTitle className="text-lg">Notifications</CardTitle>
               <div className="flex items-center space-x-2">
                 {unreadCount > 0 && (
-                  <Badge variant="secondary" className="bg-primary/10 text-primary">
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/10 text-primary"
+                  >
                     {unreadCount} new
                   </Badge>
                 )}
@@ -153,25 +158,33 @@ export default function NotificationPanel() {
                     <div
                       key={notification.id}
                       className={`group flex items-start space-x-3 p-3 rounded-lg transition-all duration-200 hover:bg-muted/50 ${
-                        !notification.read ? 'bg-primary/5 border-l-2 border-primary' : ''
+                        !notification.read
+                          ? "bg-primary/5 border-l-2 border-primary"
+                          : ""
                       }`}
                     >
-                      <div className={`w-8 h-8 ${notification.bgColor} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                      <div
+                        className={`w-8 h-8 ${notification.bgColor} rounded-lg flex items-center justify-center flex-shrink-0`}
+                      >
                         {notification.avatar ? (
                           <Avatar className="w-8 h-8">
                             <AvatarImage src={notification.avatar} />
                             <AvatarFallback className="text-xs">
-                              {notification.title.split(' ')[2]?.[0] || 'U'}
+                              {notification.title.split(" ")[2]?.[0] || "U"}
                             </AvatarFallback>
                           </Avatar>
                         ) : (
-                          <notification.icon className={`h-4 w-4 ${notification.color}`} />
+                          <notification.icon
+                            className={`h-4 w-4 ${notification.color}`}
+                          />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between">
                           <div>
-                            <p className={`text-sm font-medium ${!notification.read ? 'text-foreground' : 'text-muted-foreground'}`}>
+                            <p
+                              className={`text-sm font-medium ${!notification.read ? "text-foreground" : "text-muted-foreground"}`}
+                            >
                               {notification.title}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
@@ -195,7 +208,9 @@ export default function NotificationPanel() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => deleteNotification(notification.id)}
+                              onClick={() =>
+                                deleteNotification(notification.id)
+                              }
                               className="w-6 h-6 p-0 hover:bg-red-500/20 text-red-500"
                             >
                               <X className="h-3 w-3" />

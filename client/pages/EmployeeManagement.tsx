@@ -5,8 +5,21 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Users,
   Search,
@@ -190,7 +203,7 @@ const stats = [
   },
   {
     title: "Active Today",
-    value: employees.filter(e => e.status === "active").length.toString(),
+    value: employees.filter((e) => e.status === "active").length.toString(),
     change: "+1",
     icon: UserCheck,
     color: "text-green-500",
@@ -199,7 +212,9 @@ const stats = [
   },
   {
     title: "Avg Rating",
-    value: (employees.reduce((acc, emp) => acc + emp.rating, 0) / employees.length).toFixed(1),
+    value: (
+      employees.reduce((acc, emp) => acc + emp.rating, 0) / employees.length
+    ).toFixed(1),
     change: "+0.3",
     icon: Star,
     color: "text-yellow-500",
@@ -208,7 +223,11 @@ const stats = [
   },
   {
     title: "Performance",
-    value: Math.round(employees.reduce((acc, emp) => acc + emp.performance.thisMonth, 0) / employees.length) + "%",
+    value:
+      Math.round(
+        employees.reduce((acc, emp) => acc + emp.performance.thisMonth, 0) /
+          employees.length,
+      ) + "%",
     change: "+5%",
     icon: TrendingUp,
     color: "text-primary",
@@ -222,15 +241,20 @@ export default function EmployeeManagement() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [departmentFilter, setDepartmentFilter] = useState("all");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [selectedEmployee, setSelectedEmployee] = useState<typeof employees[0] | null>(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<
+    (typeof employees)[0] | null
+  >(null);
 
-  const filteredEmployees = employees.filter(employee => {
-    const matchesSearch = employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.department.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "all" || employee.status === statusFilter;
-    const matchesDepartment = departmentFilter === "all" || employee.department === departmentFilter;
-    
+  const filteredEmployees = employees.filter((employee) => {
+    const matchesSearch =
+      employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.department.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === "all" || employee.status === statusFilter;
+    const matchesDepartment =
+      departmentFilter === "all" || employee.department === departmentFilter;
+
     return matchesSearch && matchesStatus && matchesDepartment;
   });
 
@@ -270,11 +294,16 @@ export default function EmployeeManagement() {
         <header className="bg-card backdrop-blur-xl border-b border-border sticky top-0 z-40">
           <div className="flex items-center justify-between h-20 px-8">
             <div className="flex items-center space-x-6">
-              <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/dashboard"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
                 <ArrowLeft className="h-5 w-5" />
               </Link>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">Employee Management</h1>
+                <h1 className="text-2xl font-bold text-foreground">
+                  Employee Management
+                </h1>
                 <p className="text-sm text-muted-foreground">
                   Manage your team members and track their performance
                 </p>
@@ -308,7 +337,11 @@ export default function EmployeeManagement() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" placeholder="john@restaurant.com" />
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="john@restaurant.com"
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone</Label>
@@ -336,7 +369,10 @@ export default function EmployeeManagement() {
                       </div>
                     </div>
                     <div className="flex justify-end space-x-2 pt-4">
-                      <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+                      <Button
+                        variant="outline"
+                        onClick={() => setIsAddDialogOpen(false)}
+                      >
                         Cancel
                       </Button>
                       <Button onClick={() => setIsAddDialogOpen(false)}>
@@ -355,19 +391,31 @@ export default function EmployeeManagement() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <Card key={index} className="border-0 shadow-lg bg-card backdrop-blur-xl hover:shadow-xl transition-all duration-300">
+              <Card
+                key={index}
+                className="border-0 shadow-lg bg-card backdrop-blur-xl hover:shadow-xl transition-all duration-300"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        {stat.title}
+                      </p>
                       <div className="flex items-center space-x-2 mt-1">
-                        <p className="text-3xl font-bold text-foreground">{stat.value}</p>
-                        <Badge variant="secondary" className="text-xs bg-primary/20 text-primary border-0">
+                        <p className="text-3xl font-bold text-foreground">
+                          {stat.value}
+                        </p>
+                        <Badge
+                          variant="secondary"
+                          className="text-xs bg-primary/20 text-primary border-0"
+                        >
                           {stat.change}
                         </Badge>
                       </div>
                     </div>
-                    <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}>
+                    <div
+                      className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}
+                    >
                       <stat.icon className={`h-6 w-6 ${stat.color}`} />
                     </div>
                   </div>
@@ -384,7 +432,10 @@ export default function EmployeeManagement() {
                   <Users className="h-5 w-5" />
                   <span>Employee Directory</span>
                 </CardTitle>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
+                <Badge
+                  variant="secondary"
+                  className="bg-primary/10 text-primary"
+                >
                   {filteredEmployees.length} employees
                 </Badge>
               </div>
@@ -409,7 +460,10 @@ export default function EmployeeManagement() {
                       <SelectItem value="offline">Offline</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+                  <Select
+                    value={departmentFilter}
+                    onValueChange={setDepartmentFilter}
+                  >
                     <SelectTrigger className="w-40">
                       <SelectValue placeholder="All Departments" />
                     </SelectTrigger>
@@ -430,28 +484,56 @@ export default function EmployeeManagement() {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-border/50 bg-muted/20">
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Employee</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Contact</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Department</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Status</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Rating</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">NFC Card</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Performance</th>
-                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">Actions</th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Employee
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Contact
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Department
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Status
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Rating
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        NFC Card
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Performance
+                      </th>
+                      <th className="text-left p-4 text-sm font-semibold text-muted-foreground">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredEmployees.map((employee) => (
-                      <tr key={employee.id} className="border-b border-border/30 hover:bg-muted/10 transition-colors">
+                      <tr
+                        key={employee.id}
+                        className="border-b border-border/30 hover:bg-muted/10 transition-colors"
+                      >
                         <td className="p-4">
                           <div className="flex items-center space-x-3">
                             <Avatar className="w-10 h-10">
                               <AvatarImage src={employee.avatar} />
-                              <AvatarFallback>{employee.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                              <AvatarFallback>
+                                {employee.name
+                                  .split(" ")
+                                  .map((n) => n[0])
+                                  .join("")}
+                              </AvatarFallback>
                             </Avatar>
                             <div>
-                              <div className="font-medium text-sm">{employee.name}</div>
-                              <div className="text-xs text-muted-foreground">{employee.position}</div>
+                              <div className="font-medium text-sm">
+                                {employee.name}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                {employee.position}
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -473,49 +555,81 @@ export default function EmployeeManagement() {
                           </Badge>
                         </td>
                         <td className="p-4">
-                          <Badge className={`text-xs ${getStatusBadge(employee.status)}`}>
+                          <Badge
+                            className={`text-xs ${getStatusBadge(employee.status)}`}
+                          >
                             {employee.status}
                           </Badge>
                         </td>
                         <td className="p-4">
                           <div className="flex items-center space-x-2">
                             <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                            <span className="text-sm font-medium">{employee.rating}</span>
-                            <span className="text-xs text-muted-foreground">({employee.totalFeedbacks})</span>
+                            <span className="text-sm font-medium">
+                              {employee.rating}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              ({employee.totalFeedbacks})
+                            </span>
                           </div>
                         </td>
                         <td className="p-4">
                           <div className="space-y-1">
                             <div className="flex items-center space-x-2">
                               <QrCode className="h-3 w-3 text-muted-foreground" />
-                              <span className="text-xs font-mono">{employee.nfcCard.id}</span>
+                              <span className="text-xs font-mono">
+                                {employee.nfcCard.id}
+                              </span>
                             </div>
-                            <Badge className={`text-xs ${getNFCStatusBadge(employee.nfcCard.status)}`}>
+                            <Badge
+                              className={`text-xs ${getNFCStatusBadge(employee.nfcCard.status)}`}
+                            >
                               {employee.nfcCard.status}
                             </Badge>
                           </div>
                         </td>
                         <td className="p-4">
                           <div className="flex items-center space-x-2">
-                            <div className="text-sm font-medium">{employee.performance.thisMonth}%</div>
-                            <div className={`flex items-center ${
-                              employee.performance.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                            }`}>
-                              <TrendingUp className={`h-3 w-3 ${
-                                employee.performance.trend === 'down' ? 'rotate-180' : ''
-                              }`} />
+                            <div className="text-sm font-medium">
+                              {employee.performance.thisMonth}%
+                            </div>
+                            <div
+                              className={`flex items-center ${
+                                employee.performance.trend === "up"
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }`}
+                            >
+                              <TrendingUp
+                                className={`h-3 w-3 ${
+                                  employee.performance.trend === "down"
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
                             </div>
                           </div>
                         </td>
                         <td className="p-4">
                           <div className="flex items-center space-x-2">
-                            <Button variant="ghost" size="sm" className="w-8 h-8 p-0">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-8 h-8 p-0"
+                            >
                               <Edit3 className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm" className="w-8 h-8 p-0 text-red-500 hover:text-red-600">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-8 h-8 p-0 text-red-500 hover:text-red-600"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm" className="w-8 h-8 p-0">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-8 h-8 p-0"
+                            >
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </div>

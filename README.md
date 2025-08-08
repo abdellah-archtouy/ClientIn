@@ -15,6 +15,7 @@ ClientIn is a revolutionary customer service management platform that transforms
 ## ✨ Key Features
 
 ### 🎯 **Core Functionality**
+
 - **NFC Card System**: Each employee gets a personalized NFC card for instant customer feedback
 - **Real-time Dashboard**: Monitor team performance and customer satisfaction live
 - **Feedback Management**: Comprehensive system to collect, analyze, and respond to customer feedback
@@ -22,17 +23,20 @@ ClientIn is a revolutionary customer service management platform that transforms
 - **Analytics & Reporting**: Advanced charts and insights for data-driven decisions
 
 ### 📱 **User Experience**
+
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Dark/Light Mode**: Automatic theme switching with system preference detection
 - **Multi-language Support**: Built-in internationalization ready
 - **Professional UI**: Modern interface with smooth animations and transitions
 
 ### 🔐 **Security & Authentication**
+
 - **Secure Login/Signup**: Complete authentication system with form validation
 - **User Profiles**: Detailed user management with role-based permissions
 - **Data Protection**: Privacy-focused design with GDPR compliance ready
 
 ### 📊 **Business Intelligence**
+
 - **Performance Metrics**: Track employee ratings, feedback trends, and satisfaction scores
 - **Custom Analytics**: Filter and analyze data by department, time period, and more
 - **Export Capabilities**: Download reports and data for external analysis
@@ -41,6 +45,7 @@ ClientIn is a revolutionary customer service management platform that transforms
 ## 🛠️ Tech Stack
 
 ### **Frontend**
+
 - **React 18.3.1** - Modern React with hooks and concurrent features
 - **TypeScript 5.5.3** - Type-safe development with full IDE support
 - **Vite 6.2.2** - Lightning-fast build tool and dev server
@@ -51,11 +56,13 @@ ClientIn is a revolutionary customer service management platform that transforms
 - **Framer Motion** - Smooth animations and micro-interactions
 
 ### **Backend**
+
 - **Express 4.18.2** - Fast, unopinionated web framework
 - **Node.js** - JavaScript runtime built on Chrome's V8 engine
 - **TypeScript** - End-to-end type safety
 
 ### **Development Tools**
+
 - **Vitest** - Fast unit testing with TypeScript support
 - **ESLint & Prettier** - Code linting and formatting
 - **Zod** - Runtime type validation and parsing
@@ -63,23 +70,27 @@ ClientIn is a revolutionary customer service management platform that transforms
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - **Node.js** 18.0 or higher
 - **npm** 9.0 or higher
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/abdellah-archtouy/ClientIn.git
    cd ClientIn
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -154,16 +165,19 @@ ClientIn/
 ClientIn uses a comprehensive design system built with TailwindCSS:
 
 ### **Colors**
+
 - **Primary**: Green accent (`--primary`) for branding and CTAs
 - **Background**: Dark theme optimized for professional use
 - **Semantic Colors**: Success, warning, error states with proper contrast
 
 ### **Typography**
+
 - **Inter Font Family**: Modern, readable font optimized for UI
 - **Responsive Scale**: Fluid typography that scales across devices
 - **Proper Hierarchy**: Clear heading and body text relationships
 
 ### **Components**
+
 - **Consistent Spacing**: 8px grid system for perfect alignment
 - **Border Radius**: Rounded corners (0.5rem base) for modern feel
 - **Shadows**: Layered shadow system for depth and hierarchy
@@ -172,6 +186,7 @@ ClientIn uses a comprehensive design system built with TailwindCSS:
 ## 🌟 Key Pages & Features
 
 ### **Dashboard** (`/dashboard`)
+
 - Real-time employee activity monitoring
 - Performance statistics with trend indicators
 - Quick actions for common tasks
@@ -179,6 +194,7 @@ ClientIn uses a comprehensive design system built with TailwindCSS:
 - NFC card management overview
 
 ### **Employee Management** (`/employees`)
+
 - Complete employee directory with search and filtering
 - Individual performance tracking
 - NFC card assignment and monitoring
@@ -186,6 +202,7 @@ ClientIn uses a comprehensive design system built with TailwindCSS:
 - Bulk operations and data export
 
 ### **Feedback Management** (`/feedback`)
+
 - Customer feedback collection and management
 - Response system for customer service
 - Sentiment analysis and categorization
@@ -193,6 +210,7 @@ ClientIn uses a comprehensive design system built with TailwindCSS:
 - Advanced filtering and search capabilities
 
 ### **Analytics** (`/charts`)
+
 - Interactive performance charts and graphs
 - Department comparison views
 - Rating distribution analysis
@@ -200,6 +218,7 @@ ClientIn uses a comprehensive design system built with TailwindCSS:
 - Exportable reports and data
 
 ### **Profile & Settings** (`/profile`, `/settings`)
+
 - User profile management with photo upload
 - Account preferences and notifications
 - Security settings including 2FA
@@ -209,6 +228,7 @@ ClientIn uses a comprehensive design system built with TailwindCSS:
 ## 🔧 Configuration
 
 ### **Environment Variables**
+
 Create a `.env` file in the root directory:
 
 ```env
@@ -228,6 +248,7 @@ NODE_ENV=development
 ```
 
 ### **Customization**
+
 - **Theme**: Modify `client/global.css` for color scheme changes
 - **Components**: Extend UI components in `client/components/ui/`
 - **Routes**: Add new pages in `client/pages/` and update routing in `App.tsx`
@@ -235,16 +256,18 @@ NODE_ENV=development
 ## 🚢 Deployment
 
 ### **Recommended Platforms**
+
 - **Netlify** (Frontend) - Optimized for React SPAs with automatic deployments
 - **Vercel** (Full-stack) - Zero-config deployment with serverless functions
 - **Railway/Render** (Backend) - For Express server deployment
 
 ### **Build Commands**
+
 ```bash
 # Frontend build
 npm run build:client
 
-# Backend build  
+# Backend build
 npm run build:server
 
 # Full build (both)
@@ -256,6 +279,7 @@ npm run build
 We welcome contributions to ClientIn! Please follow these guidelines:
 
 ### **Development Workflow**
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes with proper TypeScript types
@@ -266,6 +290,7 @@ We welcome contributions to ClientIn! Please follow these guidelines:
 8. Open a Pull Request
 
 ### **Code Standards**
+
 - **TypeScript**: All code must be properly typed
 - **ESLint**: Follow the established linting rules
 - **Prettier**: Code must be formatted before committing
@@ -273,6 +298,7 @@ We welcome contributions to ClientIn! Please follow these guidelines:
 - **Documentation**: Update README and code comments for significant changes
 
 ### **Component Guidelines**
+
 - Use Radix UI primitives for accessibility
 - Follow the established design system
 - Implement proper loading and error states
@@ -300,6 +326,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 💬 Support
 
 For questions, suggestions, or support:
+
 - **GitHub Issues**: [Create an issue](https://github.com/abdellah-archtouy/ClientIn/issues)
 - **Email**: [Contact the team](mailto:contact@clientin.com)
 - **Discord**: [Join our community](https://discord.gg/clientin)

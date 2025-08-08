@@ -94,15 +94,17 @@ const plans = [
 const currentPlan = "free"; // This would come from user data
 
 export default function Upgrade() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
+    "monthly",
+  );
 
-  const getPrice = (plan: typeof plans[0]) => {
+  const getPrice = (plan: (typeof plans)[0]) => {
     if (plan.price === 0) return "Free";
     const price = billingCycle === "yearly" ? plan.price * 10 : plan.price; // 2 months free on yearly
     return billingCycle === "yearly" ? `$${price}/year` : `$${price}/month`;
   };
 
-  const getSavings = (plan: typeof plans[0]) => {
+  const getSavings = (plan: (typeof plans)[0]) => {
     if (plan.price === 0 || billingCycle === "monthly") return null;
     return "Save 2 months";
   };
@@ -110,18 +112,23 @@ export default function Upgrade() {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      
+
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
         {/* Header */}
         <header className="bg-card backdrop-blur-xl border-b border-border sticky top-0 z-40">
           <div className="flex items-center justify-between h-20 px-8">
             <div className="flex items-center space-x-4">
-              <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/dashboard"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
                 <ArrowLeft className="h-5 w-5" />
               </Link>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">Upgrade Plan</h1>
+                <h1 className="text-2xl font-bold text-foreground">
+                  Upgrade Plan
+                </h1>
                 <p className="text-sm text-muted-foreground">
                   Choose the perfect plan for your business
                 </p>
@@ -129,7 +136,7 @@ export default function Upgrade() {
             </div>
             <div className="flex items-center space-x-3">
               <Badge className="bg-primary/20 text-primary border-primary/30">
-                Current: {plans.find(p => p.id === currentPlan)?.name}
+                Current: {plans.find((p) => p.id === currentPlan)?.name}
               </Badge>
             </div>
           </div>
@@ -142,11 +149,14 @@ export default function Upgrade() {
             <div className="text-center mb-12">
               <div className="flex items-center justify-center space-x-2 mb-4">
                 <Crown className="h-8 w-8 text-primary" />
-                <h2 className="text-4xl font-bold text-foreground">Unlock Premium Features</h2>
+                <h2 className="text-4xl font-bold text-foreground">
+                  Unlock Premium Features
+                </h2>
               </div>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Supercharge your customer service with advanced analytics, unlimited employees, 
-                and premium support that scales with your business.
+                Supercharge your customer service with advanced analytics,
+                unlimited employees, and premium support that scales with your
+                business.
               </p>
             </div>
 
@@ -182,8 +192,8 @@ export default function Upgrade() {
             {/* Plans Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {plans.map((plan) => (
-                <Card 
-                  key={plan.id} 
+                <Card
+                  key={plan.id}
                   className={`border-0 shadow-lg bg-card backdrop-blur-xl relative ${
                     plan.popular ? "ring-2 ring-primary" : ""
                   }`}
@@ -195,14 +205,22 @@ export default function Upgrade() {
                       </Badge>
                     </div>
                   )}
-                  
+
                   <CardHeader className="text-center pb-6">
                     <div className="flex items-center justify-center mb-4">
-                      {plan.id === "free" && <Users className="h-8 w-8 text-muted-foreground" />}
-                      {plan.id === "pro" && <Crown className="h-8 w-8 text-primary" />}
-                      {plan.id === "enterprise" && <Shield className="h-8 w-8 text-purple-500" />}
+                      {plan.id === "free" && (
+                        <Users className="h-8 w-8 text-muted-foreground" />
+                      )}
+                      {plan.id === "pro" && (
+                        <Crown className="h-8 w-8 text-primary" />
+                      )}
+                      {plan.id === "enterprise" && (
+                        <Shield className="h-8 w-8 text-purple-500" />
+                      )}
                     </div>
-                    <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
+                    <CardTitle className="text-2xl font-bold">
+                      {plan.name}
+                    </CardTitle>
                     <p className="text-muted-foreground">{plan.description}</p>
                     <div className="mt-4">
                       <div className="text-4xl font-bold text-foreground">
@@ -219,11 +237,18 @@ export default function Upgrade() {
                   <CardContent className="space-y-6">
                     {/* Features */}
                     <div className="space-y-3">
-                      <h4 className="font-semibold text-sm text-foreground">Features included:</h4>
+                      <h4 className="font-semibold text-sm text-foreground">
+                        Features included:
+                      </h4>
                       {plan.features.map((feature, index) => (
-                        <div key={index} className="flex items-center space-x-3">
+                        <div
+                          key={index}
+                          className="flex items-center space-x-3"
+                        >
                           <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{feature}</span>
+                          <span className="text-sm text-muted-foreground">
+                            {feature}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -233,23 +258,32 @@ export default function Upgrade() {
                       <>
                         <Separator />
                         <div className="space-y-3">
-                          <h4 className="font-semibold text-sm text-muted-foreground">Limitations:</h4>
+                          <h4 className="font-semibold text-sm text-muted-foreground">
+                            Limitations:
+                          </h4>
                           {plan.limitations.map((limitation, index) => (
-                            <div key={index} className="flex items-center space-x-3">
+                            <div
+                              key={index}
+                              className="flex items-center space-x-3"
+                            >
                               <X className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                              <span className="text-sm text-muted-foreground">{limitation}</span>
+                              <span className="text-sm text-muted-foreground">
+                                {limitation}
+                              </span>
                             </div>
                           ))}
                         </div>
                       </>
                     )}
 
-                    <Button 
+                    <Button
                       variant={plan.buttonVariant}
                       className="w-full mt-6"
                       disabled={plan.id === currentPlan}
                     >
-                      {plan.id === currentPlan ? "Current Plan" : plan.buttonText}
+                      {plan.id === currentPlan
+                        ? "Current Plan"
+                        : plan.buttonText}
                     </Button>
                   </CardContent>
                 </Card>
@@ -259,7 +293,9 @@ export default function Upgrade() {
             {/* Features Comparison */}
             <Card className="border-0 shadow-lg bg-card backdrop-blur-xl">
               <CardHeader>
-                <CardTitle className="text-2xl text-center">Feature Comparison</CardTitle>
+                <CardTitle className="text-2xl text-center">
+                  Feature Comparison
+                </CardTitle>
                 <p className="text-center text-muted-foreground">
                   See what's included in each plan
                 </p>
@@ -290,33 +326,63 @@ export default function Upgrade() {
                       </tr>
                       <tr className="border-b border-border/50">
                         <td className="p-4 font-medium">Advanced Analytics</td>
-                        <td className="text-center p-4"><X className="h-4 w-4 text-muted-foreground mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
+                        <td className="text-center p-4">
+                          <X className="h-4 w-4 text-muted-foreground mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
                       </tr>
                       <tr className="border-b border-border/50">
                         <td className="p-4 font-medium">Priority Support</td>
-                        <td className="text-center p-4"><X className="h-4 w-4 text-muted-foreground mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
+                        <td className="text-center p-4">
+                          <X className="h-4 w-4 text-muted-foreground mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
                       </tr>
                       <tr className="border-b border-border/50">
                         <td className="p-4 font-medium">Custom Branding</td>
-                        <td className="text-center p-4"><X className="h-4 w-4 text-muted-foreground mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
+                        <td className="text-center p-4">
+                          <X className="h-4 w-4 text-muted-foreground mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
                       </tr>
                       <tr className="border-b border-border/50">
                         <td className="p-4 font-medium">API Access</td>
-                        <td className="text-center p-4"><X className="h-4 w-4 text-muted-foreground mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
+                        <td className="text-center p-4">
+                          <X className="h-4 w-4 text-muted-foreground mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
                       </tr>
                       <tr>
                         <td className="p-4 font-medium">Dedicated Support</td>
-                        <td className="text-center p-4"><X className="h-4 w-4 text-muted-foreground mx-auto" /></td>
-                        <td className="text-center p-4"><X className="h-4 w-4 text-muted-foreground mx-auto" /></td>
-                        <td className="text-center p-4"><Check className="h-4 w-4 text-primary mx-auto" /></td>
+                        <td className="text-center p-4">
+                          <X className="h-4 w-4 text-muted-foreground mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <X className="h-4 w-4 text-muted-foreground mx-auto" />
+                        </td>
+                        <td className="text-center p-4">
+                          <Check className="h-4 w-4 text-primary mx-auto" />
+                        </td>
                       </tr>
                     </tbody>
                   </table>

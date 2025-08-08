@@ -6,8 +6,21 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   FileText,
@@ -46,12 +59,14 @@ const feedbackData = [
     employeeId: 1,
     department: "Front Office",
     rating: 5,
-    message: "Excellent service! Darine was very professional and helpful. The check-in process was smooth and efficient.",
+    message:
+      "Excellent service! Darine was very professional and helpful. The check-in process was smooth and efficient.",
     timestamp: "2025-01-18T14:30:00Z",
     status: "reviewed",
     category: "service",
     nfcCardId: "NFC001",
-    response: "Thank you for your wonderful feedback! We're thrilled to hear about your positive experience.",
+    response:
+      "Thank you for your wonderful feedback! We're thrilled to hear about your positive experience.",
     responseBy: "Manager",
     responseTimestamp: "2025-01-18T15:00:00Z",
     isPublic: true,
@@ -66,7 +81,8 @@ const feedbackData = [
     employeeId: 4,
     department: "Bar",
     rating: 4,
-    message: "Great cocktails and friendly service. Karim made excellent recommendations!",
+    message:
+      "Great cocktails and friendly service. Karim made excellent recommendations!",
     timestamp: "2025-01-18T13:45:00Z",
     status: "pending",
     category: "service",
@@ -86,7 +102,8 @@ const feedbackData = [
     employeeId: 2,
     department: "Kitchen",
     rating: 3,
-    message: "Food was okay but took a bit long to arrive. Ahmed was apologetic about the delay.",
+    message:
+      "Food was okay but took a bit long to arrive. Ahmed was apologetic about the delay.",
     timestamp: "2025-01-18T12:20:00Z",
     status: "pending",
     category: "food",
@@ -106,12 +123,14 @@ const feedbackData = [
     employeeId: 3,
     department: "Service",
     rating: 2,
-    message: "Service was slow and Sarah seemed overwhelmed. Food quality was below expectations.",
+    message:
+      "Service was slow and Sarah seemed overwhelmed. Food quality was below expectations.",
     timestamp: "2025-01-18T11:15:00Z",
     status: "escalated",
     category: "service",
     nfcCardId: "NFC003",
-    response: "We sincerely apologize for the poor experience. We're addressing the staffing issues immediately.",
+    response:
+      "We sincerely apologize for the poor experience. We're addressing the staffing issues immediately.",
     responseBy: "Manager",
     responseTimestamp: "2025-01-18T16:30:00Z",
     isPublic: false,
@@ -126,12 +145,14 @@ const feedbackData = [
     employeeId: 5,
     department: "Kitchen",
     rating: 5,
-    message: "Amazing food! Fatima personally ensured our special dietary requirements were met. Outstanding!",
+    message:
+      "Amazing food! Fatima personally ensured our special dietary requirements were met. Outstanding!",
     timestamp: "2025-01-18T10:30:00Z",
     status: "reviewed",
     category: "food",
     nfcCardId: "NFC005",
-    response: "Thank you so much! We're delighted that Fatima could accommodate your dietary needs.",
+    response:
+      "Thank you so much! We're delighted that Fatima could accommodate your dietary needs.",
     responseBy: "Chef Manager",
     responseTimestamp: "2025-01-18T11:00:00Z",
     isPublic: true,
@@ -152,7 +173,9 @@ const stats = [
   },
   {
     title: "Average Rating",
-    value: (feedbackData.reduce((acc, f) => acc + f.rating, 0) / feedbackData.length).toFixed(1),
+    value: (
+      feedbackData.reduce((acc, f) => acc + f.rating, 0) / feedbackData.length
+    ).toFixed(1),
     change: "+0.3",
     icon: Star,
     color: "text-yellow-500",
@@ -161,7 +184,11 @@ const stats = [
   },
   {
     title: "Response Rate",
-    value: Math.round((feedbackData.filter(f => f.response).length / feedbackData.length) * 100) + "%",
+    value:
+      Math.round(
+        (feedbackData.filter((f) => f.response).length / feedbackData.length) *
+          100,
+      ) + "%",
     change: "+15%",
     icon: Reply,
     color: "text-green-500",
@@ -170,7 +197,7 @@ const stats = [
   },
   {
     title: "Pending Reviews",
-    value: feedbackData.filter(f => f.status === "pending").length.toString(),
+    value: feedbackData.filter((f) => f.status === "pending").length.toString(),
     change: "-2",
     icon: Clock,
     color: "text-orange-500",
@@ -187,35 +214,51 @@ export default function Feedback() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortBy, setSortBy] = useState("timestamp");
   const [sortOrder, setSortOrder] = useState("desc");
-  const [selectedFeedback, setSelectedFeedback] = useState<typeof feedbackData[0] | null>(null);
+  const [selectedFeedback, setSelectedFeedback] = useState<
+    (typeof feedbackData)[0] | null
+  >(null);
   const [isReplyDialogOpen, setIsReplyDialogOpen] = useState(false);
   const [replyText, setReplyText] = useState("");
   const [replyBy, setReplyBy] = useState("");
 
   // Filter and sort feedback
   const filteredFeedback = feedbackData
-    .filter(feedback => {
-      const matchesSearch = 
-        feedback.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        feedback.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    .filter((feedback) => {
+      const matchesSearch =
+        feedback.customerName
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        feedback.employeeName
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
         feedback.message.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesStatus = statusFilter === "all" || feedback.status === statusFilter;
-      const matchesRating = ratingFilter === "all" || feedback.rating.toString() === ratingFilter;
-      const matchesDepartment = departmentFilter === "all" || feedback.department === departmentFilter;
-      const matchesCategory = categoryFilter === "all" || feedback.category === categoryFilter;
-      
-      return matchesSearch && matchesStatus && matchesRating && matchesDepartment && matchesCategory;
+
+      const matchesStatus =
+        statusFilter === "all" || feedback.status === statusFilter;
+      const matchesRating =
+        ratingFilter === "all" || feedback.rating.toString() === ratingFilter;
+      const matchesDepartment =
+        departmentFilter === "all" || feedback.department === departmentFilter;
+      const matchesCategory =
+        categoryFilter === "all" || feedback.category === categoryFilter;
+
+      return (
+        matchesSearch &&
+        matchesStatus &&
+        matchesRating &&
+        matchesDepartment &&
+        matchesCategory
+      );
     })
     .sort((a, b) => {
       let aValue = a[sortBy as keyof typeof a];
       let bValue = b[sortBy as keyof typeof b];
-      
+
       if (sortBy === "timestamp") {
         aValue = new Date(a.timestamp).getTime();
         bValue = new Date(b.timestamp).getTime();
       }
-      
+
       if (sortOrder === "asc") {
         return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
       } else {
@@ -251,14 +294,14 @@ export default function Feedback() {
 
   const handleReply = () => {
     if (!selectedFeedback || !replyText.trim()) return;
-    
+
     // In a real app, this would send to backend
     console.log("Sending reply:", {
       feedbackId: selectedFeedback.id,
       replyText,
       replyBy,
     });
-    
+
     setIsReplyDialogOpen(false);
     setReplyText("");
     setReplyBy("");
@@ -273,14 +316,16 @@ export default function Feedback() {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      
+
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
         {/* Header */}
         <header className="bg-card backdrop-blur-xl border-b border-border sticky top-0 z-40">
           <div className="flex items-center justify-between h-20 px-8">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Feedback Management</h1>
+              <h1 className="text-2xl font-bold text-foreground">
+                Feedback Management
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Monitor and respond to customer feedback
               </p>
@@ -341,7 +386,11 @@ export default function Feedback() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="message">Feedback Message</Label>
-                      <Textarea id="message" placeholder="Enter feedback message..." rows={4} />
+                      <Textarea
+                        id="message"
+                        placeholder="Enter feedback message..."
+                        rows={4}
+                      />
                     </div>
                     <div className="flex justify-end space-x-2 pt-4">
                       <Button variant="outline">Cancel</Button>
@@ -359,18 +408,25 @@ export default function Feedback() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <Card key={index} className="border-0 shadow-lg bg-card backdrop-blur-xl hover:shadow-xl transition-all duration-300">
+              <Card
+                key={index}
+                className="border-0 shadow-lg bg-card backdrop-blur-xl hover:shadow-xl transition-all duration-300"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        {stat.title}
+                      </p>
                       <div className="flex items-center space-x-2 mt-1">
-                        <p className="text-3xl font-bold text-foreground">{stat.value}</p>
+                        <p className="text-3xl font-bold text-foreground">
+                          {stat.value}
+                        </p>
                         <Badge
                           variant="secondary"
                           className={`text-xs border-0 ${
-                            stat.trend === "up" 
-                              ? "bg-green-500/20 text-green-600" 
+                            stat.trend === "up"
+                              ? "bg-green-500/20 text-green-600"
                               : "bg-red-500/20 text-red-600"
                           }`}
                         >
@@ -383,7 +439,9 @@ export default function Feedback() {
                         </Badge>
                       </div>
                     </div>
-                    <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}>
+                    <div
+                      className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}
+                    >
                       <stat.icon className={`h-6 w-6 ${stat.color}`} />
                     </div>
                   </div>
@@ -400,7 +458,10 @@ export default function Feedback() {
                   <FileText className="h-5 w-5" />
                   <span>Customer Feedback</span>
                 </CardTitle>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
+                <Badge
+                  variant="secondary"
+                  className="bg-primary/10 text-primary"
+                >
                   {filteredFeedback.length} results
                 </Badge>
               </div>
@@ -411,7 +472,7 @@ export default function Feedback() {
                   <TabsTrigger value="filters">Filters</TabsTrigger>
                   <TabsTrigger value="sort">Sort & Export</TabsTrigger>
                 </TabsList>
-                
+
                 <TabsContent value="filters" className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
                     <div className="lg:col-span-2">
@@ -422,8 +483,11 @@ export default function Feedback() {
                         className="w-full"
                       />
                     </div>
-                    
-                    <Select value={statusFilter} onValueChange={setStatusFilter}>
+
+                    <Select
+                      value={statusFilter}
+                      onValueChange={setStatusFilter}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Status" />
                       </SelectTrigger>
@@ -435,7 +499,10 @@ export default function Feedback() {
                       </SelectContent>
                     </Select>
 
-                    <Select value={ratingFilter} onValueChange={setRatingFilter}>
+                    <Select
+                      value={ratingFilter}
+                      onValueChange={setRatingFilter}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Rating" />
                       </SelectTrigger>
@@ -449,13 +516,18 @@ export default function Feedback() {
                       </SelectContent>
                     </Select>
 
-                    <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+                    <Select
+                      value={departmentFilter}
+                      onValueChange={setDepartmentFilter}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Department" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Departments</SelectItem>
-                        <SelectItem value="Front Office">Front Office</SelectItem>
+                        <SelectItem value="Front Office">
+                          Front Office
+                        </SelectItem>
                         <SelectItem value="Kitchen">Kitchen</SelectItem>
                         <SelectItem value="Service">Service</SelectItem>
                         <SelectItem value="Bar">Bar</SelectItem>
@@ -463,7 +535,10 @@ export default function Feedback() {
                       </SelectContent>
                     </Select>
 
-                    <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                    <Select
+                      value={categoryFilter}
+                      onValueChange={setCategoryFilter}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Category" />
                       </SelectTrigger>
@@ -494,11 +569,13 @@ export default function Feedback() {
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                      onClick={() =>
+                        setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                      }
                     >
                       <ArrowUpDown className="h-4 w-4 mr-2" />
                       {sortOrder === "asc" ? "Ascending" : "Descending"}
@@ -511,7 +588,10 @@ export default function Feedback() {
             <CardContent className="p-0">
               <div className="space-y-4 p-6">
                 {filteredFeedback.map((feedback) => (
-                  <Card key={feedback.id} className="border border-border/50 hover:border-primary/30 transition-all duration-200">
+                  <Card
+                    key={feedback.id}
+                    className="border border-border/50 hover:border-primary/30 transition-all duration-200"
+                  >
                     <CardContent className="p-6">
                       <div className="space-y-4">
                         {/* Header */}
@@ -519,19 +599,37 @@ export default function Feedback() {
                           <div className="flex items-start space-x-4">
                             <Avatar className="w-12 h-12">
                               <AvatarFallback className="bg-primary/10 text-primary font-medium">
-                                {feedback.customerName.split(' ').map(n => n[0]).join('')}
+                                {feedback.customerName
+                                  .split(" ")
+                                  .map((n) => n[0])
+                                  .join("")}
                               </AvatarFallback>
                             </Avatar>
                             <div>
                               <div className="flex items-center space-x-3">
-                                <h4 className="font-semibold text-foreground">{feedback.customerName}</h4>
+                                <h4 className="font-semibold text-foreground">
+                                  {feedback.customerName}
+                                </h4>
                                 <div className="flex items-center space-x-1">
-                                  {Array.from({ length: feedback.rating }, (_, i) => (
-                                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                  ))}
-                                  <span className="text-sm font-medium ml-1">{feedback.rating}</span>
+                                  {Array.from(
+                                    { length: feedback.rating },
+                                    (_, i) => (
+                                      <Star
+                                        key={i}
+                                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                                      />
+                                    ),
+                                  )}
+                                  <span className="text-sm font-medium ml-1">
+                                    {feedback.rating}
+                                  </span>
                                 </div>
-                                <Badge variant="outline" className={getSentimentBadge(feedback.sentiment)}>
+                                <Badge
+                                  variant="outline"
+                                  className={getSentimentBadge(
+                                    feedback.sentiment,
+                                  )}
+                                >
                                   {feedback.sentiment}
                                 </Badge>
                               </div>
@@ -540,11 +638,15 @@ export default function Feedback() {
                                 <span>•</span>
                                 <span>{feedback.department}</span>
                                 <span>•</span>
-                                <span>{new Date(feedback.timestamp).toLocaleDateString()}</span>
+                                <span>
+                                  {new Date(
+                                    feedback.timestamp,
+                                  ).toLocaleDateString()}
+                                </span>
                               </div>
                             </div>
                           </div>
-                          
+
                           <div className="flex items-center space-x-2">
                             <Badge className={getStatusBadge(feedback.status)}>
                               {feedback.status}
@@ -567,11 +669,17 @@ export default function Feedback() {
 
                         {/* Message */}
                         <div className="bg-muted/20 rounded-lg p-4">
-                          <p className="text-foreground leading-relaxed">{feedback.message}</p>
+                          <p className="text-foreground leading-relaxed">
+                            {feedback.message}
+                          </p>
                           {feedback.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2 mt-3">
                               {feedback.tags.map((tag, index) => (
-                                <Badge key={index} variant="outline" className="text-xs">
+                                <Badge
+                                  key={index}
+                                  variant="outline"
+                                  className="text-xs"
+                                >
                                   {tag}
                                 </Badge>
                               ))}
@@ -584,12 +692,20 @@ export default function Feedback() {
                           <div className="border-l-4 border-primary pl-4 bg-primary/5 rounded-r-lg p-4">
                             <div className="flex items-center space-x-2 mb-2">
                               <Reply className="h-4 w-4 text-primary" />
-                              <span className="text-sm font-medium text-primary">Response by {feedback.responseBy}</span>
+                              <span className="text-sm font-medium text-primary">
+                                Response by {feedback.responseBy}
+                              </span>
                               <span className="text-xs text-muted-foreground">
-                                {feedback.responseTimestamp ? new Date(feedback.responseTimestamp).toLocaleDateString() : ''}
+                                {feedback.responseTimestamp
+                                  ? new Date(
+                                      feedback.responseTimestamp,
+                                    ).toLocaleDateString()
+                                  : ""}
                               </span>
                             </div>
-                            <p className="text-foreground leading-relaxed">{feedback.response}</p>
+                            <p className="text-foreground leading-relaxed">
+                              {feedback.response}
+                            </p>
                           </div>
                         )}
 
@@ -603,27 +719,36 @@ export default function Feedback() {
                               {feedback.category}
                             </Badge>
                             {feedback.isPublic && (
-                              <Badge variant="outline" className="text-xs bg-green-500/10 text-green-600">
+                              <Badge
+                                variant="outline"
+                                className="text-xs bg-green-500/10 text-green-600"
+                              >
                                 Public
                               </Badge>
                             )}
                           </div>
-                          
+
                           <div className="flex items-center space-x-2">
-                            <Select 
-                              value={feedback.status} 
-                              onValueChange={(value) => handleStatusChange(feedback.id, value)}
+                            <Select
+                              value={feedback.status}
+                              onValueChange={(value) =>
+                                handleStatusChange(feedback.id, value)
+                              }
                             >
                               <SelectTrigger className="w-32 h-8">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="pending">Pending</SelectItem>
-                                <SelectItem value="reviewed">Reviewed</SelectItem>
-                                <SelectItem value="escalated">Escalated</SelectItem>
+                                <SelectItem value="reviewed">
+                                  Reviewed
+                                </SelectItem>
+                                <SelectItem value="escalated">
+                                  Escalated
+                                </SelectItem>
                               </SelectContent>
                             </Select>
-                            
+
                             <Button variant="ghost" size="sm">
                               <Eye className="h-4 w-4" />
                             </Button>
@@ -651,7 +776,7 @@ export default function Feedback() {
               Respond to {selectedFeedback?.customerName}'s feedback
             </DialogDescription>
           </DialogHeader>
-          
+
           {selectedFeedback && (
             <div className="space-y-4">
               {/* Original Feedback */}
@@ -659,12 +784,19 @@ export default function Feedback() {
                 <div className="flex items-center space-x-2 mb-2">
                   <div className="flex">
                     {Array.from({ length: selectedFeedback.rating }, (_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                      />
                     ))}
                   </div>
-                  <span className="text-sm font-medium">{selectedFeedback.rating}/5</span>
+                  <span className="text-sm font-medium">
+                    {selectedFeedback.rating}/5
+                  </span>
                 </div>
-                <p className="text-sm text-foreground">{selectedFeedback.message}</p>
+                <p className="text-sm text-foreground">
+                  {selectedFeedback.message}
+                </p>
               </div>
 
               {/* Reply Form */}
@@ -678,7 +810,7 @@ export default function Feedback() {
                     placeholder="Manager, Chef, etc."
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="replyText">Your response</Label>
                   <Textarea
@@ -692,10 +824,16 @@ export default function Feedback() {
               </div>
 
               <div className="flex justify-end space-x-2 pt-4">
-                <Button variant="outline" onClick={() => setIsReplyDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsReplyDialogOpen(false)}
+                >
                   Cancel
                 </Button>
-                <Button onClick={handleReply} disabled={!replyText.trim() || !replyBy.trim()}>
+                <Button
+                  onClick={handleReply}
+                  disabled={!replyText.trim() || !replyBy.trim()}
+                >
                   Send Reply
                 </Button>
               </div>

@@ -4,7 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -34,7 +40,7 @@ export default function AccountSettings() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   const [notifications, setNotifications] = useState({
     email: true,
     push: true,
@@ -59,15 +65,15 @@ export default function AccountSettings() {
   });
 
   const handleNotificationChange = (key: string, value: boolean) => {
-    setNotifications(prev => ({ ...prev, [key]: value }));
+    setNotifications((prev) => ({ ...prev, [key]: value }));
   };
 
   const handlePrivacyChange = (key: string, value: boolean) => {
-    setPrivacy(prev => ({ ...prev, [key]: value }));
+    setPrivacy((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleSecurityChange = (key: string, value: boolean | string) => {
-    setSecurity(prev => ({ ...prev, [key]: value }));
+    setSecurity((prev) => ({ ...prev, [key]: value }));
   };
 
   const getThemeIcon = () => {
@@ -84,14 +90,16 @@ export default function AccountSettings() {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      
+
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
         {/* Header */}
         <header className="bg-card backdrop-blur-xl border-b border-border sticky top-0 z-40">
           <div className="flex items-center justify-between h-20 px-8">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Account Settings</h1>
+              <h1 className="text-2xl font-bold text-foreground">
+                Account Settings
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Manage your account preferences and security settings
               </p>
@@ -172,9 +180,15 @@ export default function AccountSettings() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Africa/Tunis">Africa/Tunis</SelectItem>
-                        <SelectItem value="Europe/Paris">Europe/Paris</SelectItem>
-                        <SelectItem value="America/New_York">America/New_York</SelectItem>
+                        <SelectItem value="Africa/Tunis">
+                          Africa/Tunis
+                        </SelectItem>
+                        <SelectItem value="Europe/Paris">
+                          Europe/Paris
+                        </SelectItem>
+                        <SelectItem value="America/New_York">
+                          America/New_York
+                        </SelectItem>
                         <SelectItem value="Asia/Tokyo">Asia/Tokyo</SelectItem>
                       </SelectContent>
                     </Select>
@@ -182,7 +196,12 @@ export default function AccountSettings() {
 
                   <div className="space-y-2">
                     <Label>Session Timeout</Label>
-                    <Select value={security.sessionTimeout} onValueChange={(value) => handleSecurityChange("sessionTimeout", value)}>
+                    <Select
+                      value={security.sessionTimeout}
+                      onValueChange={(value) =>
+                        handleSecurityChange("sessionTimeout", value)
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -211,37 +230,58 @@ export default function AccountSettings() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="email-notifications" className="text-base">Email Notifications</Label>
-                      <p className="text-sm text-muted-foreground">Receive notifications via email</p>
+                      <Label
+                        htmlFor="email-notifications"
+                        className="text-base"
+                      >
+                        Email Notifications
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        Receive notifications via email
+                      </p>
                     </div>
                     <Switch
                       id="email-notifications"
                       checked={notifications.email}
-                      onCheckedChange={(checked) => handleNotificationChange("email", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("email", checked)
+                      }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="push-notifications" className="text-base">Push Notifications</Label>
-                      <p className="text-sm text-muted-foreground">Receive push notifications in browser</p>
+                      <Label htmlFor="push-notifications" className="text-base">
+                        Push Notifications
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        Receive push notifications in browser
+                      </p>
                     </div>
                     <Switch
                       id="push-notifications"
                       checked={notifications.push}
-                      onCheckedChange={(checked) => handleNotificationChange("push", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("push", checked)
+                      }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="sms-notifications" className="text-base">SMS Notifications</Label>
-                      <p className="text-sm text-muted-foreground">Receive critical alerts via SMS</p>
+                      <Label htmlFor="sms-notifications" className="text-base">
+                        SMS Notifications
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        Receive critical alerts via SMS
+                      </p>
                     </div>
                     <Switch
                       id="sms-notifications"
                       checked={notifications.sms}
-                      onCheckedChange={(checked) => handleNotificationChange("sms", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("sms", checked)
+                      }
                     />
                   </div>
 
@@ -249,49 +289,85 @@ export default function AccountSettings() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="feedback-notifications" className="text-base">Customer Feedback</Label>
-                      <p className="text-sm text-muted-foreground">New reviews and ratings</p>
+                      <Label
+                        htmlFor="feedback-notifications"
+                        className="text-base"
+                      >
+                        Customer Feedback
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        New reviews and ratings
+                      </p>
                     </div>
                     <Switch
                       id="feedback-notifications"
                       checked={notifications.feedback}
-                      onCheckedChange={(checked) => handleNotificationChange("feedback", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("feedback", checked)
+                      }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="employee-notifications" className="text-base">Employee Updates</Label>
-                      <p className="text-sm text-muted-foreground">Check-ins, check-outs, and status changes</p>
+                      <Label
+                        htmlFor="employee-notifications"
+                        className="text-base"
+                      >
+                        Employee Updates
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        Check-ins, check-outs, and status changes
+                      </p>
                     </div>
                     <Switch
                       id="employee-notifications"
                       checked={notifications.employee}
-                      onCheckedChange={(checked) => handleNotificationChange("employee", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("employee", checked)
+                      }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="system-notifications" className="text-base">System Alerts</Label>
-                      <p className="text-sm text-muted-foreground">System maintenance and updates</p>
+                      <Label
+                        htmlFor="system-notifications"
+                        className="text-base"
+                      >
+                        System Alerts
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        System maintenance and updates
+                      </p>
                     </div>
                     <Switch
                       id="system-notifications"
                       checked={notifications.system}
-                      onCheckedChange={(checked) => handleNotificationChange("system", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("system", checked)
+                      }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="marketing-notifications" className="text-base">Marketing</Label>
-                      <p className="text-sm text-muted-foreground">Product updates and feature announcements</p>
+                      <Label
+                        htmlFor="marketing-notifications"
+                        className="text-base"
+                      >
+                        Marketing
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        Product updates and feature announcements
+                      </p>
                     </div>
                     <Switch
                       id="marketing-notifications"
                       checked={notifications.marketing}
-                      onCheckedChange={(checked) => handleNotificationChange("marketing", checked)}
+                      onCheckedChange={(checked) =>
+                        handleNotificationChange("marketing", checked)
+                      }
                     />
                   </div>
                 </div>
@@ -324,9 +400,15 @@ export default function AccountSettings() {
                           variant="ghost"
                           size="sm"
                           className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0"
-                          onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                          onClick={() =>
+                            setShowCurrentPassword(!showCurrentPassword)
+                          }
                         >
-                          {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          {showCurrentPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
                         </Button>
                       </div>
                     </div>
@@ -346,12 +428,18 @@ export default function AccountSettings() {
                             className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0"
                             onClick={() => setShowNewPassword(!showNewPassword)}
                           >
-                            {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            {showNewPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
                           </Button>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="confirm-password">Confirm Password</Label>
+                        <Label htmlFor="confirm-password">
+                          Confirm Password
+                        </Label>
                         <div className="relative">
                           <Input
                             id="confirm-password"
@@ -363,9 +451,15 @@ export default function AccountSettings() {
                             variant="ghost"
                             size="sm"
                             className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0"
-                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            onClick={() =>
+                              setShowConfirmPassword(!showConfirmPassword)
+                            }
                           >
-                            {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            {showConfirmPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
                           </Button>
                         </div>
                       </div>
@@ -383,23 +477,32 @@ export default function AccountSettings() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="two-factor" className="text-base">Two-Factor Authentication</Label>
-                      <p className="text-sm text-muted-foreground">Add an extra layer of security</p>
+                      <Label htmlFor="two-factor" className="text-base">
+                        Two-Factor Authentication
+                      </Label>
+                      <p className="text-sm text-muted-foreground">
+                        Add an extra layer of security
+                      </p>
                     </div>
                     <Switch
                       id="two-factor"
                       checked={security.twoFactor}
-                      onCheckedChange={(checked) => handleSecurityChange("twoFactor", checked)}
+                      onCheckedChange={(checked) =>
+                        handleSecurityChange("twoFactor", checked)
+                      }
                     />
                   </div>
                   {security.twoFactor && (
                     <div className="ml-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
                       <div className="flex items-center space-x-2 mb-2">
                         <Smartphone className="h-4 w-4 text-primary" />
-                        <span className="text-sm font-medium">Authenticator App Required</span>
+                        <span className="text-sm font-medium">
+                          Authenticator App Required
+                        </span>
                       </div>
                       <p className="text-xs text-muted-foreground">
-                        Download an authenticator app like Google Authenticator or Authy to complete setup.
+                        Download an authenticator app like Google Authenticator
+                        or Authy to complete setup.
                       </p>
                       <Button variant="outline" size="sm" className="mt-2">
                         Configure 2FA
@@ -410,13 +513,19 @@ export default function AccountSettings() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label htmlFor="login-alerts" className="text-base">Login Alerts</Label>
-                    <p className="text-sm text-muted-foreground">Get notified of new sign-ins</p>
+                    <Label htmlFor="login-alerts" className="text-base">
+                      Login Alerts
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      Get notified of new sign-ins
+                    </p>
                   </div>
                   <Switch
                     id="login-alerts"
                     checked={security.loginAlerts}
-                    onCheckedChange={(checked) => handleSecurityChange("loginAlerts", checked)}
+                    onCheckedChange={(checked) =>
+                      handleSecurityChange("loginAlerts", checked)
+                    }
                   />
                 </div>
               </CardContent>
@@ -433,49 +542,73 @@ export default function AccountSettings() {
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label htmlFor="profile-visible" className="text-base">Public Profile</Label>
-                    <p className="text-sm text-muted-foreground">Make your profile visible to team members</p>
+                    <Label htmlFor="profile-visible" className="text-base">
+                      Public Profile
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      Make your profile visible to team members
+                    </p>
                   </div>
                   <Switch
                     id="profile-visible"
                     checked={privacy.profileVisible}
-                    onCheckedChange={(checked) => handlePrivacyChange("profileVisible", checked)}
+                    onCheckedChange={(checked) =>
+                      handlePrivacyChange("profileVisible", checked)
+                    }
                   />
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label htmlFor="activity-tracking" className="text-base">Activity Tracking</Label>
-                    <p className="text-sm text-muted-foreground">Track your activity for analytics</p>
+                    <Label htmlFor="activity-tracking" className="text-base">
+                      Activity Tracking
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      Track your activity for analytics
+                    </p>
                   </div>
                   <Switch
                     id="activity-tracking"
                     checked={privacy.activityTracking}
-                    onCheckedChange={(checked) => handlePrivacyChange("activityTracking", checked)}
+                    onCheckedChange={(checked) =>
+                      handlePrivacyChange("activityTracking", checked)
+                    }
                   />
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label htmlFor="data-collection" className="text-base">Data Collection</Label>
-                    <p className="text-sm text-muted-foreground">Allow collection of usage data</p>
+                    <Label htmlFor="data-collection" className="text-base">
+                      Data Collection
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      Allow collection of usage data
+                    </p>
                   </div>
                   <Switch
                     id="data-collection"
                     checked={privacy.dataCollection}
-                    onCheckedChange={(checked) => handlePrivacyChange("dataCollection", checked)}
+                    onCheckedChange={(checked) =>
+                      handlePrivacyChange("dataCollection", checked)
+                    }
                   />
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label htmlFor="analytics" className="text-base">Analytics</Label>
-                    <p className="text-sm text-muted-foreground">Help improve our service with anonymous analytics</p>
+                    <Label htmlFor="analytics" className="text-base">
+                      Analytics
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      Help improve our service with anonymous analytics
+                    </p>
                   </div>
                   <Switch
                     id="analytics"
                     checked={privacy.analytics}
-                    onCheckedChange={(checked) => handlePrivacyChange("analytics", checked)}
+                    onCheckedChange={(checked) =>
+                      handlePrivacyChange("analytics", checked)
+                    }
                   />
                 </div>
               </CardContent>
@@ -494,9 +627,13 @@ export default function AccountSettings() {
                   <div>
                     <div className="flex items-center space-x-2">
                       <h4 className="font-semibold">Current Plan</h4>
-                      <Badge className="bg-primary/20 text-primary border-primary/30">PRO</Badge>
+                      <Badge className="bg-primary/20 text-primary border-primary/30">
+                        PRO
+                      </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">$29/month • Billed monthly</p>
+                    <p className="text-sm text-muted-foreground">
+                      $29/month • Billed monthly
+                    </p>
                   </div>
                   <Button variant="outline">
                     <CreditCard className="h-4 w-4 mr-2" />
@@ -522,11 +659,11 @@ export default function AccountSettings() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold">Delete Account</h4>
-                    <p className="text-sm text-muted-foreground">Permanently delete your account and all data</p>
+                    <p className="text-sm text-muted-foreground">
+                      Permanently delete your account and all data
+                    </p>
                   </div>
-                  <Button variant="destructive">
-                    Delete Account
-                  </Button>
+                  <Button variant="destructive">Delete Account</Button>
                 </div>
               </CardContent>
             </Card>

@@ -1,12 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Home,
-  Users,
-  BarChart3,
-  FileText,
-  Settings,
-} from "lucide-react";
+import { Home, Users, BarChart3, FileText, Settings } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import NotificationPanel from "@/components/NotificationPanel";
 import ProfileDropdown from "@/components/ProfileDropdown";
@@ -46,10 +40,15 @@ export default function Sidebar({ className = "" }: SidebarProps) {
   };
 
   return (
-    <div className={`fixed left-0 top-0 h-full w-20 bg-sidebar backdrop-blur-xl border-r border-sidebar-border z-50 ${className}`}>
+    <div
+      className={`fixed left-0 top-0 h-full w-20 bg-sidebar backdrop-blur-xl border-r border-sidebar-border z-50 ${className}`}
+    >
       <div className="flex flex-col items-center py-6 space-y-6 h-full">
         {/* Logo */}
-        <Link to="/dashboard" className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200">
+        <Link
+          to="/dashboard"
+          className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200"
+        >
           <span className="text-primary-foreground font-bold text-lg">C</span>
         </Link>
 

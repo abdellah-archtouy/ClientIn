@@ -1,12 +1,34 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff, Mail, Lock, User, Building, UserPlus, ArrowLeft, Check } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  User,
+  Building,
+  UserPlus,
+  ArrowLeft,
+  Check,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -29,7 +51,7 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate signup - in real app this would be an API call
     setTimeout(() => {
       setIsLoading(false);
@@ -39,26 +61,38 @@ export default function Signup() {
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const passwordsMatch = formData.password === formData.confirmPassword;
-  const isFormValid = formData.firstName && formData.lastName && formData.email && 
-                     formData.password && formData.confirmPassword && passwordsMatch && 
-                     formData.company && formData.businessType && formData.agreeToTerms;
+  const isFormValid =
+    formData.firstName &&
+    formData.lastName &&
+    formData.email &&
+    formData.password &&
+    formData.confirmPassword &&
+    passwordsMatch &&
+    formData.company &&
+    formData.businessType &&
+    formData.agreeToTerms;
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors mb-6">
+          <Link
+            to="/"
+            className="inline-flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors mb-6"
+          >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to home</span>
           </Link>
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">C</span>
+              <span className="text-primary-foreground font-bold text-lg">
+                C
+              </span>
             </div>
             <span className="text-2xl font-bold text-foreground">ClientIn</span>
           </div>
@@ -70,9 +104,12 @@ export default function Signup() {
         {/* Signup Form */}
         <Card className="border-0 shadow-lg bg-card backdrop-blur-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">Create your account</CardTitle>
+            <CardTitle className="text-2xl font-bold">
+              Create your account
+            </CardTitle>
             <CardDescription>
-              Join ClientIn and transform your customer service with NFC technology
+              Join ClientIn and transform your customer service with NFC
+              technology
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -90,7 +127,9 @@ export default function Signup() {
                       type="text"
                       placeholder="John"
                       value={formData.firstName}
-                      onChange={(e) => handleInputChange("firstName", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("firstName", e.target.value)
+                      }
                       className="pl-10 border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                       required
                     />
@@ -105,7 +144,9 @@ export default function Signup() {
                     type="text"
                     placeholder="Doe"
                     value={formData.lastName}
-                    onChange={(e) => handleInputChange("lastName", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("lastName", e.target.value)
+                    }
                     className="border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                     required
                   />
@@ -142,7 +183,9 @@ export default function Signup() {
                     type="text"
                     placeholder="Your company name"
                     value={formData.company}
-                    onChange={(e) => handleInputChange("company", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("company", e.target.value)
+                    }
                     className="pl-10 border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                     required
                   />
@@ -153,7 +196,11 @@ export default function Signup() {
                 <Label htmlFor="businessType" className="text-sm font-medium">
                   Business type
                 </Label>
-                <Select onValueChange={(value) => handleInputChange("businessType", value)}>
+                <Select
+                  onValueChange={(value) =>
+                    handleInputChange("businessType", value)
+                  }
+                >
                   <SelectTrigger className="border-border bg-background/50 focus:border-primary focus:ring-primary/20">
                     <SelectValue placeholder="Select your business type" />
                   </SelectTrigger>
@@ -182,7 +229,9 @@ export default function Signup() {
                     type={showPassword ? "text" : "password"}
                     placeholder="Create a strong password"
                     value={formData.password}
-                    onChange={(e) => handleInputChange("password", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
                     className="pl-10 pr-10 border-border bg-background/50 focus:border-primary focus:ring-primary/20"
                     required
                   />
@@ -191,13 +240,20 @@ export default function Signup() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium">
+                <Label
+                  htmlFor="confirmPassword"
+                  className="text-sm font-medium"
+                >
                   Confirm password
                 </Label>
                 <div className="relative">
@@ -207,9 +263,13 @@ export default function Signup() {
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
                     value={formData.confirmPassword}
-                    onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("confirmPassword", e.target.value)
+                    }
                     className={`pl-10 pr-10 border-border bg-background/50 focus:border-primary focus:ring-primary/20 ${
-                      formData.confirmPassword && !passwordsMatch ? 'border-red-500' : ''
+                      formData.confirmPassword && !passwordsMatch
+                        ? "border-red-500"
+                        : ""
                     }`}
                     required
                   />
@@ -218,7 +278,11 @@ export default function Signup() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
                 {formData.confirmPassword && !passwordsMatch && (
@@ -232,16 +296,27 @@ export default function Signup() {
                   <Checkbox
                     id="terms"
                     checked={formData.agreeToTerms}
-                    onCheckedChange={(checked) => handleInputChange("agreeToTerms", checked as boolean)}
+                    onCheckedChange={(checked) =>
+                      handleInputChange("agreeToTerms", checked as boolean)
+                    }
                     className="mt-1"
                   />
-                  <Label htmlFor="terms" className="text-sm text-muted-foreground leading-relaxed">
+                  <Label
+                    htmlFor="terms"
+                    className="text-sm text-muted-foreground leading-relaxed"
+                  >
                     I agree to the{" "}
-                    <Link to="/terms" className="text-primary hover:text-primary/80 underline">
+                    <Link
+                      to="/terms"
+                      className="text-primary hover:text-primary/80 underline"
+                    >
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link to="/privacy" className="text-primary hover:text-primary/80 underline">
+                    <Link
+                      to="/privacy"
+                      className="text-primary hover:text-primary/80 underline"
+                    >
                       Privacy Policy
                     </Link>
                   </Label>
@@ -250,11 +325,17 @@ export default function Signup() {
                   <Checkbox
                     id="marketing"
                     checked={formData.agreeToMarketing}
-                    onCheckedChange={(checked) => handleInputChange("agreeToMarketing", checked as boolean)}
+                    onCheckedChange={(checked) =>
+                      handleInputChange("agreeToMarketing", checked as boolean)
+                    }
                     className="mt-1"
                   />
-                  <Label htmlFor="marketing" className="text-sm text-muted-foreground leading-relaxed">
-                    I'd like to receive marketing emails about ClientIn updates and features
+                  <Label
+                    htmlFor="marketing"
+                    className="text-sm text-muted-foreground leading-relaxed"
+                  >
+                    I'd like to receive marketing emails about ClientIn updates
+                    and features
                   </Label>
                 </div>
               </div>

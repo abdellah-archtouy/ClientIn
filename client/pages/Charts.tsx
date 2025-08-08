@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   BarChart3,
   TrendingUp,
@@ -48,11 +54,41 @@ const ratingDistribution = [
 ];
 
 const topPerformers = [
-  { name: "Ahmed Khelifi", department: "Kitchen", rating: 4.9, feedbacks: 33, improvement: "+12%" },
-  { name: "Darine Ben Ali", department: "Front Office", rating: 4.8, feedbacks: 47, improvement: "+8%" },
-  { name: "Karim Jebali", department: "Bar", rating: 4.7, feedbacks: 52, improvement: "+15%" },
-  { name: "Fatima Bouaziz", department: "Kitchen", rating: 4.6, feedbacks: 41, improvement: "+5%" },
-  { name: "Omar Trabelsi", department: "Security", rating: 4.5, feedbacks: 29, improvement: "+3%" },
+  {
+    name: "Ahmed Khelifi",
+    department: "Kitchen",
+    rating: 4.9,
+    feedbacks: 33,
+    improvement: "+12%",
+  },
+  {
+    name: "Darine Ben Ali",
+    department: "Front Office",
+    rating: 4.8,
+    feedbacks: 47,
+    improvement: "+8%",
+  },
+  {
+    name: "Karim Jebali",
+    department: "Bar",
+    rating: 4.7,
+    feedbacks: 52,
+    improvement: "+15%",
+  },
+  {
+    name: "Fatima Bouaziz",
+    department: "Kitchen",
+    rating: 4.6,
+    feedbacks: 41,
+    improvement: "+5%",
+  },
+  {
+    name: "Omar Trabelsi",
+    department: "Security",
+    rating: 4.5,
+    feedbacks: 29,
+    improvement: "+3%",
+  },
 ];
 
 export default function Charts() {
@@ -74,7 +110,7 @@ export default function Charts() {
       title: "Avg Rating",
       value: "4.7",
       change: "+0.3",
-      trend: "up", 
+      trend: "up",
       icon: Star,
       color: "text-yellow-500",
       bgColor: "bg-yellow-500/10",
@@ -102,14 +138,16 @@ export default function Charts() {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      
+
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
         {/* Header */}
         <header className="bg-card backdrop-blur-xl border-b border-border sticky top-0 z-40">
           <div className="flex items-center justify-between h-20 px-8">
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Analytics Dashboard</h1>
+              <h1 className="text-2xl font-bold text-foreground">
+                Analytics Dashboard
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Detailed insights and performance metrics
               </p>
@@ -141,18 +179,25 @@ export default function Charts() {
           {/* Stats Overview */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <Card key={index} className="border-0 shadow-lg bg-card backdrop-blur-xl hover:shadow-xl transition-all duration-300">
+              <Card
+                key={index}
+                className="border-0 shadow-lg bg-card backdrop-blur-xl hover:shadow-xl transition-all duration-300"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        {stat.title}
+                      </p>
                       <div className="flex items-center space-x-2 mt-1">
-                        <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                        <p className="text-2xl font-bold text-foreground">
+                          {stat.value}
+                        </p>
                         <Badge
                           variant="secondary"
                           className={`text-xs border-0 ${
-                            stat.trend === "up" 
-                              ? "bg-green-500/20 text-green-600" 
+                            stat.trend === "up"
+                              ? "bg-green-500/20 text-green-600"
                               : "bg-red-500/20 text-red-600"
                           }`}
                         >
@@ -165,7 +210,9 @@ export default function Charts() {
                         </Badge>
                       </div>
                     </div>
-                    <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}>
+                    <div
+                      className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center`}
+                    >
                       <stat.icon className={`h-6 w-6 ${stat.color}`} />
                     </div>
                   </div>
@@ -191,9 +238,15 @@ export default function Charts() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="performance">Performance</SelectItem>
-                          <SelectItem value="feedback">Feedback Count</SelectItem>
-                          <SelectItem value="employees">Employee Count</SelectItem>
+                          <SelectItem value="performance">
+                            Performance
+                          </SelectItem>
+                          <SelectItem value="feedback">
+                            Feedback Count
+                          </SelectItem>
+                          <SelectItem value="employees">
+                            Employee Count
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <Button variant="ghost" size="sm">
@@ -208,17 +261,22 @@ export default function Charts() {
                     <div className="relative h-full bg-muted/10 rounded-lg p-6">
                       <div className="flex items-end justify-between h-full space-x-4">
                         {performanceData.map((data, index) => (
-                          <div key={index} className="flex flex-col items-center space-y-2 flex-1">
+                          <div
+                            key={index}
+                            className="flex flex-col items-center space-y-2 flex-1"
+                          >
                             <div className="relative w-full">
-                              <div 
+                              <div
                                 className="bg-primary rounded-t-lg transition-all duration-500"
-                                style={{ 
-                                  height: `${(data[chartType as keyof typeof data] as number / 100) * 200}px`,
-                                  minHeight: "20px"
+                                style={{
+                                  height: `${((data[chartType as keyof typeof data] as number) / 100) * 200}px`,
+                                  minHeight: "20px",
                                 }}
                               ></div>
                             </div>
-                            <span className="text-xs text-muted-foreground">{data.month}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {data.month}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -246,7 +304,9 @@ export default function Charts() {
                       <div key={index} className="space-y-2">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
-                            <div className={`w-3 h-3 ${dept.color} rounded-full`}></div>
+                            <div
+                              className={`w-3 h-3 ${dept.color} rounded-full`}
+                            ></div>
                             <span className="font-medium">{dept.name}</span>
                             <Badge variant="outline" className="text-xs">
                               {dept.employees} employees
@@ -285,12 +345,19 @@ export default function Charts() {
                           <div className="flex items-center space-x-2">
                             <div className="flex">
                               {Array.from({ length: rating.rating }, (_, i) => (
-                                <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                <Star
+                                  key={i}
+                                  className="w-3 h-3 fill-yellow-400 text-yellow-400"
+                                />
                               ))}
                             </div>
-                            <span className="text-sm">{rating.count} reviews</span>
+                            <span className="text-sm">
+                              {rating.count} reviews
+                            </span>
                           </div>
-                          <span className="text-sm font-medium">{rating.percentage}%</span>
+                          <span className="text-sm font-medium">
+                            {rating.percentage}%
+                          </span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
                           <div
@@ -315,17 +382,29 @@ export default function Charts() {
                 <CardContent>
                   <div className="space-y-4">
                     {topPerformers.map((performer, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-muted/20 rounded-lg">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3 bg-muted/20 rounded-lg"
+                      >
                         <div>
-                          <div className="font-medium text-sm">{performer.name}</div>
-                          <div className="text-xs text-muted-foreground">{performer.department}</div>
+                          <div className="font-medium text-sm">
+                            {performer.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {performer.department}
+                          </div>
                         </div>
                         <div className="text-right">
                           <div className="flex items-center space-x-1">
                             <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                            <span className="text-sm font-medium">{performer.rating}</span>
+                            <span className="text-sm font-medium">
+                              {performer.rating}
+                            </span>
                           </div>
-                          <Badge variant="secondary" className="text-xs bg-green-500/20 text-green-600">
+                          <Badge
+                            variant="secondary"
+                            className="text-xs bg-green-500/20 text-green-600"
+                          >
                             {performer.improvement}
                           </Badge>
                         </div>

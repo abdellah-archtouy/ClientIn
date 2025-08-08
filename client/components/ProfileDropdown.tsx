@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -13,7 +17,7 @@ import {
   Moon,
   Sun,
   Monitor,
-  Shield
+  Shield,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -23,7 +27,7 @@ const userProfile = {
   role: "Admin",
   avatar: "/api/placeholder/40/40",
   plan: "PRO",
-  company: "ClientIn Solutions"
+  company: "ClientIn Solutions",
 };
 
 export default function ProfileDropdown() {
@@ -62,7 +66,10 @@ export default function ProfileDropdown() {
           <Avatar className="w-10 h-10 ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-200">
             <AvatarImage src={userProfile.avatar} />
             <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10">
-              {userProfile.name.split(' ').map(n => n[0]).join('')}
+              {userProfile.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -75,7 +82,10 @@ export default function ProfileDropdown() {
               <Avatar className="w-12 h-12 ring-2 ring-primary/30">
                 <AvatarImage src={userProfile.avatar} />
                 <AvatarFallback className="bg-primary/20 text-primary font-medium">
-                  {userProfile.name.split(' ').map(n => n[0]).join('')}
+                  {userProfile.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0">
@@ -147,7 +157,9 @@ export default function ProfileDropdown() {
               <Crown className="h-4 w-4 mr-3 text-yellow-500" />
               <div className="flex-1 text-left">
                 <div>Upgrade Plan</div>
-                <div className="text-xs text-muted-foreground">Unlock premium features</div>
+                <div className="text-xs text-muted-foreground">
+                  Unlock premium features
+                </div>
               </div>
             </Button>
 
@@ -160,7 +172,9 @@ export default function ProfileDropdown() {
             >
               {getThemeIcon()}
               <span className="ml-3 flex-1 text-left">Theme</span>
-              <span className="text-xs text-muted-foreground capitalize">{theme}</span>
+              <span className="text-xs text-muted-foreground capitalize">
+                {theme}
+              </span>
             </Button>
 
             <Button

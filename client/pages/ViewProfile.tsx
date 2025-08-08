@@ -83,7 +83,7 @@ export default function ViewProfile() {
   return (
     <div className="min-h-screen bg-background">
       <Sidebar />
-      
+
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
         {/* Header */}
@@ -129,7 +129,10 @@ export default function ViewProfile() {
                     <Avatar className="w-32 h-32 ring-4 ring-primary/20">
                       <AvatarImage src={userProfile.avatar} />
                       <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10 text-2xl font-bold">
-                        {userProfile.name.split(' ').map(n => n[0]).join('')}
+                        {userProfile.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </AvatarFallback>
                     </Avatar>
                     {isEditing && (
@@ -145,16 +148,23 @@ export default function ViewProfile() {
                   {/* Profile Info */}
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
-                      <h2 className="text-3xl font-bold text-foreground">{userProfile.name}</h2>
+                      <h2 className="text-3xl font-bold text-foreground">
+                        {userProfile.name}
+                      </h2>
                       <Badge className="bg-primary/20 text-primary border-primary/30">
                         {userProfile.plan}
                       </Badge>
-                      <Badge variant="outline" className="text-yellow-600 border-yellow-600/30">
+                      <Badge
+                        variant="outline"
+                        className="text-yellow-600 border-yellow-600/30"
+                      >
                         <Crown className="h-3 w-3 mr-1" />
                         {userProfile.role}
                       </Badge>
                     </div>
-                    <p className="text-lg text-muted-foreground mb-4">{userProfile.company}</p>
+                    <p className="text-lg text-muted-foreground mb-4">
+                      {userProfile.company}
+                    </p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center space-x-2">
                         <Mail className="h-4 w-4 text-muted-foreground" />
@@ -170,7 +180,10 @@ export default function ViewProfile() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Calendar className="h-4 w-4 text-muted-foreground" />
-                        <span>Joined {new Date(userProfile.joinDate).toLocaleDateString()}</span>
+                        <span>
+                          Joined{" "}
+                          {new Date(userProfile.joinDate).toLocaleDateString()}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -197,7 +210,12 @@ export default function ViewProfile() {
                           <Input
                             id="name"
                             value={formData.name}
-                            onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                name: e.target.value,
+                              }))
+                            }
                           />
                         ) : (
                           <p className="py-2">{formData.name}</p>
@@ -210,7 +228,12 @@ export default function ViewProfile() {
                             id="email"
                             type="email"
                             value={formData.email}
-                            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                email: e.target.value,
+                              }))
+                            }
                           />
                         ) : (
                           <p className="py-2">{formData.email}</p>
@@ -222,7 +245,12 @@ export default function ViewProfile() {
                           <Input
                             id="phone"
                             value={formData.phone}
-                            onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                phone: e.target.value,
+                              }))
+                            }
                           />
                         ) : (
                           <p className="py-2">{formData.phone}</p>
@@ -234,7 +262,12 @@ export default function ViewProfile() {
                           <Input
                             id="company"
                             value={formData.company}
-                            onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                company: e.target.value,
+                              }))
+                            }
                           />
                         ) : (
                           <p className="py-2">{formData.company}</p>
@@ -247,7 +280,12 @@ export default function ViewProfile() {
                         <Input
                           id="location"
                           value={formData.location}
-                          onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
+                          onChange={(e) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              location: e.target.value,
+                            }))
+                          }
                         />
                       ) : (
                         <p className="py-2">{formData.location}</p>
@@ -260,7 +298,12 @@ export default function ViewProfile() {
                           id="bio"
                           rows={4}
                           value={formData.bio}
-                          onChange={(e) => setFormData(prev => ({ ...prev, bio: e.target.value }))}
+                          onChange={(e) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              bio: e.target.value,
+                            }))
+                          }
                         />
                       ) : (
                         <p className="py-2 leading-relaxed">{formData.bio}</p>
@@ -280,11 +323,18 @@ export default function ViewProfile() {
                   <CardContent>
                     <div className="space-y-4">
                       {userProfile.activities.map((activity, index) => (
-                        <div key={index} className="flex items-start space-x-3 pb-4 border-b border-border/50 last:border-0">
+                        <div
+                          key={index}
+                          className="flex items-start space-x-3 pb-4 border-b border-border/50 last:border-0"
+                        >
                           <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium">{activity.action}</p>
-                            <p className="text-xs text-muted-foreground">{activity.time}</p>
+                            <p className="text-sm font-medium">
+                              {activity.action}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {activity.time}
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -306,28 +356,36 @@ export default function ViewProfile() {
                         <Users className="h-4 w-4 text-primary" />
                         <span className="text-sm">Total Employees</span>
                       </div>
-                      <span className="font-bold">{userProfile.stats.totalEmployees}</span>
+                      <span className="font-bold">
+                        {userProfile.stats.totalEmployees}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Star className="h-4 w-4 text-yellow-500" />
                         <span className="text-sm">Average Rating</span>
                       </div>
-                      <span className="font-bold">{userProfile.stats.avgRating}</span>
+                      <span className="font-bold">
+                        {userProfile.stats.avgRating}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <Activity className="h-4 w-4 text-blue-500" />
                         <span className="text-sm">Total Feedbacks</span>
                       </div>
-                      <span className="font-bold">{userProfile.stats.totalFeedbacks}</span>
+                      <span className="font-bold">
+                        {userProfile.stats.totalFeedbacks}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <TrendingUp className="h-4 w-4 text-green-500" />
                         <span className="text-sm">Performance</span>
                       </div>
-                      <span className="font-bold">{userProfile.stats.performance}%</span>
+                      <span className="font-bold">
+                        {userProfile.stats.performance}%
+                      </span>
                     </div>
                   </CardContent>
                 </Card>
