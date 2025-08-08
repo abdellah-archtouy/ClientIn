@@ -56,7 +56,9 @@ export default function Index() {
               >
                 E-Client
               </Link>
-              <Button>Get Started</Button>
+              <Button asChild>
+                <Link to="/signup">Get Started</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -79,9 +81,11 @@ export default function Index() {
               instantanément et boostez la performance de vos équipes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8">
-                <Zap className="mr-2 h-5 w-5" />
-                Démarrer maintenant
+              <Button asChild size="lg" className="text-lg px-8">
+                <Link to="/signup">
+                  <Zap className="mr-2 h-5 w-5" />
+                  Démarrer maintenant
+                </Link>
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8">
                 Voir la démo
@@ -332,11 +336,16 @@ export default function Index() {
             améliorer leur satisfaction client et booster leurs équipes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8">
-              Commencer gratuitement
+            <Button asChild size="lg" className="text-lg px-8">
+              <Link to="/signup">Commencer gratuitement</Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8">
-              Contacter un expert
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="text-lg px-8"
+            >
+              <Link to="/contact">Contacter un expert</Link>
             </Button>
           </div>
         </div>

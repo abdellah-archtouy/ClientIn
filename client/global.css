@@ -106,4 +106,49 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Prevent ResizeObserver loops by ensuring stable layouts */
+  [data-radix-scroll-area-viewport] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  [data-radix-scroll-area-viewport]::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Stabilize popover and dialog positioning to reduce ResizeObserver triggers */
+  [data-radix-popper-content-wrapper],
+  [data-radix-dialog-overlay],
+  [data-radix-popover-content] {
+    contain: layout style;
+  }
+
+  /* Prevent content jumping that can trigger ResizeObserver loops */
+  [data-radix-scroll-area-root] {
+    overflow: hidden;
+  }
+
+  /* Custom scrollbar styling for better UX */
+  .scroll-smooth {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scroll-smooth::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scroll-smooth::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scroll-smooth::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .scroll-smooth::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground));
+  }
 }

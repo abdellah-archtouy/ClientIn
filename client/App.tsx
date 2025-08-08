@@ -9,10 +9,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import EClient from "./pages/EClient";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import EmployeeManagement from "./pages/EmployeeManagement";
+import ViewProfile from "./pages/ViewProfile";
+import AccountSettings from "./pages/AccountSettings";
+import Charts from "./pages/Charts";
+import Upgrade from "./pages/Upgrade";
+import Feedback from "./pages/Feedback";
 import Placeholder from "./pages/Placeholder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+// ResizeObserver error suppression is now handled in index.html
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -22,7 +32,24 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/employees" element={<EmployeeManagement />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/profile" element={<ViewProfile />} />
+          <Route path="/settings" element={<AccountSettings />} />
+          <Route
+            path="/reports"
+            element={
+              <Placeholder
+                title="Reports"
+                description="Advanced reporting and analytics dashboard coming soon."
+              />
+            }
+          />
+          <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/e-client" element={<EClient />} />
           <Route
             path="/about"
