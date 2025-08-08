@@ -20,47 +20,77 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Suppress ResizeObserver loop error/warning - common with Radix UI components
+// Comprehensive ResizeObserver error suppression - common with Radix UI components
+const resizeObserverErrorRegex = /ResizeObserver loop completed with undelivered notifications/i;
+
+// Store original console methods
 const originalError = console.error;
 const originalWarn = console.warn;
+const originalLog = console.log;
 
-// Suppress console.error
-console.error = (...args: any[]) => {
-  if (
-    typeof args[0] === "string" &&
-    args[0].includes("ResizeObserver loop completed with undelivered notifications")
-  ) {
-    return;
+// Create a function to check if a message should be suppressed
+const shouldSuppressMessage = (message: any): boolean => {
+  if (typeof message === "string") {
+    return resizeObserverErrorRegex.test(message);
   }
+  if (message instanceof Error) {
+    return resizeObserverErrorRegex.test(message.message);
+  }
+  return false;
+};
+
+// Override console methods
+console.error = (...args: any[]) => {
+  if (args.some(shouldSuppressMessage)) return;
   originalError.call(console, ...args);
 };
 
-// Suppress console.warn
 console.warn = (...args: any[]) => {
-  if (
-    typeof args[0] === "string" &&
-    args[0].includes("ResizeObserver loop completed with undelivered notifications")
-  ) {
-    return;
-  }
+  if (args.some(shouldSuppressMessage)) return;
   originalWarn.call(console, ...args);
+};
+
+console.log = (...args: any[]) => {
+  if (args.some(shouldSuppressMessage)) return;
+  originalLog.call(console, ...args);
 };
 
 // Handle window error events
 window.addEventListener("error", (e) => {
-  if (e.message.includes("ResizeObserver loop completed with undelivered notifications")) {
+  if (resizeObserverErrorRegex.test(e.message)) {
     e.preventDefault();
+    e.stopPropagation();
     return false;
   }
 });
 
 // Handle unhandled promise rejection events
 window.addEventListener("unhandledrejection", (e) => {
-  if (e.reason?.message?.includes("ResizeObserver loop completed with undelivered notifications")) {
+  if (e.reason?.message && resizeObserverErrorRegex.test(e.reason.message)) {
     e.preventDefault();
     return false;
   }
 });
+
+// Override the global ResizeObserver to catch errors at the source
+if (typeof window !== "undefined" && window.ResizeObserver) {
+  const OriginalResizeObserver = window.ResizeObserver;
+  window.ResizeObserver = class extends OriginalResizeObserver {
+    constructor(callback: ResizeObserverCallback) {
+      const wrappedCallback: ResizeObserverCallback = (entries, observer) => {
+        try {
+          callback(entries, observer);
+        } catch (error: any) {
+          if (!resizeObserverErrorRegex.test(error?.message || "")) {
+            throw error;
+          }
+          // Silently ignore ResizeObserver loop errors
+        }
+      };
+      super(wrappedCallback);
+    }
+  };
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
