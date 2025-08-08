@@ -142,7 +142,7 @@ export default function NotificationPanel() {
             </div>
           </CardHeader>
           <CardContent className="p-0">
-            <ScrollArea className="h-80">
+            <div className="h-80 overflow-y-auto scroll-smooth">
               <div className="space-y-1 p-4">
                 {notificationList.length === 0 ? (
                   <div className="text-center py-8 text-muted-foreground">
@@ -208,7 +208,7 @@ export default function NotificationPanel() {
                   ))
                 )}
               </div>
-            </ScrollArea>
+            </div>
             <div className="border-t border-border/50 p-4">
               <Button
                 variant="ghost"
