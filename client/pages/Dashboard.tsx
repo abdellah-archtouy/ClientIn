@@ -32,6 +32,8 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import NotificationPanel from "@/components/NotificationPanel";
+import ProfileDropdown from "@/components/ProfileDropdown";
 
 const employees = [
   {
@@ -259,27 +261,13 @@ export default function Dashboard() {
             >
               <Settings className="h-6 w-6" />
             </Button>
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-12 h-12 p-0 text-slate-500 hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-              >
-                <Bell className="h-6 w-6" />
-              </Button>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-            </div>
+            <NotificationPanel />
             <Badge className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground text-xs px-2 py-1 rounded-lg">
               PRO
             </Badge>
           </div>
 
-          <Avatar className="w-12 h-12 ring-2 ring-primary/20">
-            <AvatarImage src="/api/placeholder/48/48" />
-            <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10">
-              AA
-            </AvatarFallback>
-          </Avatar>
+          <ProfileDropdown />
         </div>
       </div>
 
@@ -317,10 +305,7 @@ export default function Dashboard() {
                   Add Employee
                 </Link>
               </Button>
-              <Avatar className="w-10 h-10 ring-2 ring-primary/20">
-                <AvatarImage src="/api/placeholder/40/40" />
-                <AvatarFallback>AA</AvatarFallback>
-              </Avatar>
+              <ProfileDropdown />
             </div>
           </div>
         </header>
