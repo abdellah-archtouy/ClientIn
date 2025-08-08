@@ -28,6 +28,8 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Sidebar from "@/components/Sidebar";
+import SearchField from "@/components/SearchField";
 
 const employees = [
   {
@@ -260,33 +262,7 @@ export default function EmployeeManagement() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Sidebar space */}
-      <div className="fixed left-0 top-0 h-full w-20 bg-sidebar backdrop-blur-xl border-r border-sidebar-border z-50">
-        <div className="flex flex-col items-center py-6 space-y-6">
-          <Link to="/dashboard" className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg">
-            <span className="text-primary-foreground font-bold text-lg">C</span>
-          </Link>
-
-          <nav className="flex flex-col space-y-3">
-            <Link to="/dashboard">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-12 h-12 p-0 text-sidebar-foreground hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-              >
-                <Activity className="h-6 w-6" />
-              </Button>
-            </Link>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-12 h-12 p-0 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl transition-all duration-200"
-            >
-              <Users className="h-6 w-6" />
-            </Button>
-          </nav>
-        </div>
-      </div>
+      <Sidebar />
 
       {/* Main Content */}
       <div className="ml-20 flex flex-col min-h-screen">
@@ -415,15 +391,12 @@ export default function EmployeeManagement() {
 
               {/* Filters */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                  <Input
-                    placeholder="Search employees..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
+                <SearchField
+                  placeholder="Search employees..."
+                  value={searchTerm}
+                  onChange={setSearchTerm}
+                  className="flex-1"
+                />
                 <div className="flex items-center space-x-2">
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
                     <SelectTrigger className="w-40">
