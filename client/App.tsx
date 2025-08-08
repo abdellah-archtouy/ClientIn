@@ -108,6 +108,7 @@ const App = () => (
           <Route path="/charts" element={<Charts />} />
           <Route path="/profile" element={<ViewProfile />} />
           <Route path="/settings" element={<AccountSettings />} />
+          <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/e-client" element={<EClient />} />
           <Route
             path="/about"
